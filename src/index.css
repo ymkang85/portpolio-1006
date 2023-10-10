@@ -1,13 +1,57 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --bg-color: #000;
+  --primary-color: #0d0d0d;
+  --secondary-color: #fff;
+  --text-color: #fff;
+  --text-color2: rgb(204,0,0);
+  --overlay-color: rgb(12 12 12 / 60%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="light"] {
+   --bg-color: #fff;
+   --primary-color:#fff;
+   --secondary-color:#000;
+   --text-color: #000;
+   --text-color2: rgb(204, 0 , 0);
+   --overlay-color: rgb(255 255 255 / 70%);
+}
+
+html, body{
+   height:100%;
+}
+body{
+  margin:0;
+  height:100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding-top: 60px;
+  border-left: 10px solid var(--primary-color);
+  border-right: 10px solid var(--primary-color);
+  font-family: 'Sunflower', sans-serif;
+  font-size: 18px;
+  font-weight:300;
+}
+
+ul{
+   list-style: none;
+}
+a, a:hover{
+  color: var(--text-color);
+}
+p{
+   word-break: break-word;
+   hyphens: auto;
+}
+.ovhidden{
+  overflow: hidden;
+}
+h1{
+  font-size: 3rem;
+  font-weight: 500;
+}
+h2 {
+  font-size: 2rem;
+   font-weight: 700;
 }

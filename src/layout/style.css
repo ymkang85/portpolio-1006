@@ -1,0 +1,140 @@
+.site__header{
+  top: 10px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.menu__button{
+   color: var(--text-color);
+}
+.menu__button:focus,
+.menu__button:hover{
+    color: var(--text-color);
+    box-shadow: unset;
+}
+
+.menu__button svg{
+    width:2em;
+    height:2em;
+    fill: var(--text-color);
+    color: var(--text-color);
+}
+.nav_ac{
+    padding:5px 15px;
+    background: var(--primary-color);
+    margin:0;
+    border:unset;
+    font-size: 1.25rem;
+    color:var(--text-color);
+    line-height: 2;
+    height:50px;
+    font-weight:700;
+    z-index: 100;
+}
+.nav_ac:hover{
+    color:var(--text-color);
+}
+
+.br-top,.br-bottom,.br-right,.br-left{
+    position:fixed;
+    z-index:999999;
+    background:var(--primary-color);
+}
+.br-top{
+    top:0;
+    height:10px;
+    left:0;
+    width:100%;
+}
+.br-bottom{
+    bottom:0;
+    height:10px;
+    left:0;
+    width:100%;  
+}
+.br-left{
+    top:0;
+    height:100%;
+    left:0;
+    width:10px;  
+}
+.br-right{
+    bottom:0;
+    height:100%;
+    right:0;
+    width:10px;  
+}
+
+.site__navigation{
+    height:100%;
+    left:0;
+    overflow: hidden;
+    position: fixed;
+    top:0;
+    width:100%;
+    visibility: hidden;
+}
+.menu_opend{
+    visibility: visible !important;
+}
+.bg__menu{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:var(--primary-color);
+    will-change: transform;
+    transform: translateY(-100%);
+    transition: all .5s ease;
+}
+.menu_opend .bg__menu{
+    transform: translateY(0);
+}
+.menu_wrapper{
+    position:relative;
+    width:100%;
+    height: 100%;
+    overflow: hidden auto;
+}
+.the_menu{
+    padding-top: 20vh;
+    padding-bottom:20vh;
+    padding-left:0;
+}
+.the_menu .menu_item>a {
+    color: var(--text-color);
+    line-height: 1;
+    font-size:2rem;
+    display: inline-block;
+    position: relative;
+    transition: color 250ms cubic-bezier(0, 0, 0.58, 1) 0s;
+    padding: 4px 0px;
+    text-decoration: none;
+}
+.the_menu .menu_item>a:hover{
+    color: var(--text-color2);
+}
+.menu__footer{
+   bottom:0;
+   font-size:14px;
+   background: var(--primary-color);
+}
+.menu__footer a{
+    color:var(--text-color);
+    margin-right: 10px;
+    text-decoration: none;
+}
+@media (min-width: 992px) {
+    .menu__container{
+        margin-left: 33.33333%;
+    }
+    .the_menu{
+        padding-top:10vh;
+        padding-bottom:10vh;
+    }
+}
+@media (min-width: 768px) {
+   .the_menu .menu_item>a{
+    font-size:4vw;
+   }
+}

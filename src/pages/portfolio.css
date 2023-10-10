@@ -1,0 +1,7 @@
+.portfolio-img img{
+   filter: grayscale(100%) !important;
+   transition: all 300ms ease;
+}
+.portfolio-img img:hover{
+   filter: grayscale(0%) !important;
+}
