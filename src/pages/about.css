@@ -1,0 +1,83 @@
+.table td, .table th{
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+.t_border{
+    border-color: var(--text-color) !important;
+}
+.sec_sp{
+    margin-bottom: calc(3rem + 5.13vw);
+}
+.progress-title{
+    font-size: 18px;
+    font-weight: 500;
+    margin:15px 0 20px;
+}
+
+.progress {
+    height: 5px;
+    background: var(--secondary);
+    border-radius: 0;
+    box-shadow:none;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.progress .progress-bar{
+    position: relative;
+    background: var(--text-color);
+    overflow: visible;
+    opacity: 0.8;
+    animation: animate-pos 2s;
+}
+.progress .progress-value{
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-color);
+    z-index: 999;
+}
+
+.serv_title{
+    padding:8px 0;
+    border-bottom: 2px solid var;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+@keyframes animate-pos{
+    0%{
+        width:0%;
+    }
+}
+@-webkit-keyframes animate-pos{
+    0%{
+        width:0%;
+    }
+}
+@keyframes fadeInUp {
+    0%{
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 100%, 0);
+    }
+    to{
+        opacity: 1; 
+        transform: translateZ(0);
+        -webkit-transform: translatZ(0);
+    }
+}
+@-webkit-keyframes fadeInUp {
+    0%{
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        -webkit-transform: translate3d(0, 100%, 0);
+    }
+    to{
+        opacity: 1; 
+        transform: translateZ(0);
+        -webkit-transform: translatZ(0);
+    }
+}
