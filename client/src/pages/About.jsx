@@ -9,7 +9,7 @@ const About = () => {
     <HelmetProvider>
       <Container className='about-header'>
         <Helmet>
-          <meta charSet='UTF-8' />
+          <meta charSet="UTF-8" />
           <title>About | {meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
@@ -35,14 +35,13 @@ const About = () => {
             <table className='table caption-top'>
               <tbody>
                 {
-                  // eslint-disable-next-line array-callback-return
-                  mytimeline.map((item, i)=>{
+                  mytimeline.map((item, i)=>(
                     <tr key={i}>
                       <th scope='row'>{item.jobtitle}</th>
                       <td>{item.where}</td>
                       <td>{item.date}</td>
                     </tr>
-                  })
+                  ))
                 }
               </tbody>
             </table>
@@ -54,17 +53,16 @@ const About = () => {
           </Col>
           <Col lg="7">
             {
-              // eslint-disable-next-line array-callback-return
-              myskills.map((item, i) => {
+              myskills.map((item, i) => (
                 <div key={i}>
                   <h3 className='progress-title'>{item.name}</h3>
                   <div className='progress'>
                     <div className="progress-bar" style={{ width: `${item.value}%` }}>
-                      <div classname="progress-bar">{item.value}</div>
+                      <div className="progress-value">{item.value}%</div>
                     </div>
                   </div>
                 </div>
-              })
+              ))
             }
           </Col>
         </Row>
@@ -74,13 +72,12 @@ const About = () => {
           </Col>
           <Col lg="7">
             {
-              // eslint-disable-next-line array-callback-return
-              services.map((item, i) => {
+              services.map((item, i) => (
                 <div className="serv py-4" key={i}>
                   <h4 className='serv_title'>{item.title}</h4>
                   <p className='serv_desc'>{item.description}</p>
                 </div>
-              })
+              ))
             }
           </Col>
         </Row>

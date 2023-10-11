@@ -19,6 +19,7 @@ const Header = () => {
                 <MyLogo width="150" height="40" />
              </Link>
              <div className="d-flex align-items-center">
+                {/* 토글만들것 */}
                 <button className="menu__button nav_ac" onClick={handleToggle}>
                     {isActive ? <VscMenu /> : <VscClose />}
                 </button>

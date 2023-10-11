@@ -1,7 +1,7 @@
 const logotext = "WEIN'S";
 const meta = {
     title: "강영민",
-    description: "나 홍길동이가 리엑트 웹사이트를 공부하면서 만든 페이지다."
+    description: "나 강영민이 리엑트 웹사이트를 공부하면서 만든 페이지다."
 };
 const introdata = {
     title: "Hi! I'm Hong",
@@ -14,7 +14,7 @@ const introdata = {
     img_url: "/images/mee.jpg"
 };
 const portfoliodata = {
-    title: "ymkang's portfolio",
+    title: "wein's portfolio",
     description: "developer, react, nodejs, next, web and app"
 }
 
@@ -55,7 +55,7 @@ const imgData = [
 
 const dataabout = {
     title: 'Welcome, About by self',
-    content: '안녕하세요? 반갑습니다. 이 웹 페이지는 현재 포트폴리오를 제작하기 위하여 만든 웹으로 router, mongoDB, react등을 활용하여 구성하였습니다. '
+    content: '안녕하세요? 반갑습니다. 이 웹 페이지는 현재 연습중인 페이지로, 완성이 될지는 미지수입니다.'
 }
 const mytimeline = [
     {
@@ -115,7 +115,6 @@ const services = [
         description: "신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다."
     }
 ]
-
 export {
     logotext,
     meta, 

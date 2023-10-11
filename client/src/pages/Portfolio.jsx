@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './portfolio.css'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { portfoliodata, imgData } from '../data/portfolio'
@@ -17,7 +18,7 @@ const Portfolio = () => {
    }
    const handleShow = (image) => {
       setImg(image);
-      setShow(!show);
+      setShow(true);
    }
    const handleBtns = (cate, num) => {
       setClickStyle1(false);
@@ -39,6 +40,7 @@ const Portfolio = () => {
             setClickStyle4(true);
             break;
       }
+      
       const newMyData = imgData.filter((item) => {
          if (cate === 'all') {
             return imgData;
