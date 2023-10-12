@@ -114,7 +114,17 @@ const services = [
         title: "Front & Back END",
         description: "신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다."
     }
-]
+];
+
+const contact_config = {
+    ADMIN_EMAIL : "kangym855@gmail.com", 
+    ADMIN_PHONE : "010-2264-8825",
+    description : "내일을 꿈꾼다.",
+    ADMIN_SERVICE_ID : "service_jp0cklr",
+    ADMIN_TEMPLATE_ID : "template_ldf9zca",
+    ADMIN_API : "leZA6JWtsRHNnKt-6"
+}
+
 export {
     logotext,
     meta, 
@@ -124,5 +134,6 @@ export {
     dataabout,
     mytimeline,
     myskills,
-    services
+    services,
+    contact_config
 }

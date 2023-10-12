@@ -6,7 +6,7 @@ import './style.css';
 
 
 const Header = () => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
   const handleToggle = () => {
      setIsActive(!isActive);
   }  
@@ -19,7 +19,7 @@ const Header = () => {
                 <MyLogo width="150" height="40" />
              </Link>
              <div className="d-flex align-items-center">
-                {/* 토글만들것 */}
+                {/* 토글 */}
                 <button className="menu__button nav_ac" onClick={handleToggle}>
                     {isActive ? <VscMenu /> : <VscClose />}
                 </button>
