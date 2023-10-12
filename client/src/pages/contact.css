@@ -28,7 +28,7 @@ textarea.form-control::placeholder{
     left:0;
     right:0;
     height:10px;
-    z-index: 999999999999;
+    z-index: 999;
     background-color: var(--text-color);
     transform: translateX(100%);
     animation: loading-action 1s ease-in-out infinite;

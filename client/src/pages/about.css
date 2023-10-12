@@ -16,7 +16,7 @@
 
 .progress {
     height: 5px;
-    background: var(--secondary);
+    background: var(--secondary-color);
     border-radius: 0;
     box-shadow:none;
     margin-bottom: 30px;

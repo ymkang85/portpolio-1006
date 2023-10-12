@@ -18,45 +18,40 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (formData.email === '') {
-      alert('안됨')
-    } else {
-      setFormData({ loading: true });
+    setFormData({ loading: true });
 
 
-      const templateParams = {
-        from_name: formData.email,
-        from_username: formData.name,
-        to_name: contact_config.ADMIN_EMAIL,
-        message: formData.message
-      };
+    const templateParams = {
+      from_name: formData.email,
+      from_username: formData.name,
+      to_name: contact_config.ADMIN_EMAIL,
+      message: formData.message
+    };
 
-      emailjs.send(
-        contact_config.ADMIN_SERVICE_ID,
-        contact_config.ADMIN_TEMPLATE_ID,
-        templateParams,
-        contact_config.ADMIN_API
-      ).then(
-        (res) => {
-          console.log(res.text);
-          setFormData({
-            loading: false,
-            alertmessage: "전송에 성공했습니다. 곧 답변을 드리겠습니다. ",
-            variant: 'success',
-            show: true
-          });
-        }, (error) => {
-          console.log(error.text);
-          setFormData({
-            alertmessage: `이메일 전송에 실패했습니다. (${error.text})`,
-            variant: 'danger',
-            show: true
-          });
-          document.getElementsByClassName('co-alert')[0].scrollIntoView();
-        }
-      )
-    }
+    emailjs.send(
+      contact_config.ADMIN_SERVICE_ID,
+      contact_config.ADMIN_TEMPLATE_ID,
+      templateParams,
+      contact_config.ADMIN_API
+    ).then(
+      (res) => {
+        console.log(res.text);
+        setFormData({
+          loading: false,
+          alertmessage: "전송에 성공했습니다. 곧 답변을 드리겠습니다. ",
+          variant: 'success',
+          show: true
+        });
+      }, (error) => {
+        console.log(error.text);
+        setFormData({
+          alertmessage: `이메일 전송에 실패했습니다. (${error.text})`,
+          variant: 'danger',
+          show: true
+        });
+        document.getElementsByClassName('co-alert')[0].scrollIntoView();
+      }
+    )
   };
 
   const handleChange = (e) => {
