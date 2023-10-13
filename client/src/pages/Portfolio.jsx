@@ -78,7 +78,7 @@ const Portfolio = () => {
                }
             </div>
             <Modal show={show} onHide={handleClose}>
-               <Modal.Header closeButton>
+               <Modal.Header closeButton style={{color:"var(--bg-color)"}}>
                   포트폴리오 설명
                </Modal.Header>
                <Modal.Body closeButton>

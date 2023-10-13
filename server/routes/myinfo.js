@@ -16,7 +16,7 @@ router.route('/myinfo')
         try {
             const myinfo = await Myinfo.create({
                 email: req.body.email,
-                phone: req.body.email,
+                phone: req.body.phone,
                 name: req.body.name,
                 emailjs_id: req.body.emailjs_id,
                 emailjs_template_id: req.body.emailjs_template_id,

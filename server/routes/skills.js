@@ -1,5 +1,5 @@
 const express = require('express');
-const Skills = require('../schemas/myinfo');
+const Skills = require('../schemas/skills');
 
 const router = express.Router();
 router.route('/skills')

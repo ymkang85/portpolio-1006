@@ -59,25 +59,20 @@ const dataabout = {
 }
 const mytimeline = [
     {
-        jobtitle: "프로그래머 위크 참가",
-        where: "필라델피아",
-        date: 2001
+        jobtitle: "웹페이지 유지보수 ",
+        where: "명동",
+        date: 2018
     },
     {
-        jobtitle: "구글 자문위원 위촉",
-        where: "서울",
-        date: 2010
+        jobtitle: "보안 프로그램 설치 및 유지보수",
+        where: "논현동",
+        date: 2016
     },
     {
-        jobtitle: "네이버 웹사이트 db 제작",
-        where: "서울",
-        date: 2011
-    },
-    {
-        jobtitle: "카카오톡 개발",
-        where: "제주",
-        date: 2012
-    },    
+        jobtitle: "화상회의장비 설치 및 유지보수",
+        where: "이천 하이닉스",
+        date: 2017
+    }  
 ];
 const myskills = [
     {
@@ -119,10 +114,10 @@ const services = [
 const contact_config = {
     ADMIN_EMAIL : "kangym855@gmail.com", 
     ADMIN_PHONE : "010-2264-8825",
-    description : "내일을 꿈꾼다.",
-    ADMIN_SERVICE_ID : "service_jp0cklr",
-    ADMIN_TEMPLATE_ID : "template_ldf9zca",
-    ADMIN_API : "leZA6JWtsRHNnKt-6"
+    description : "매일 하루를 도전하자.",
+    ADMIN_SERVICE_ID :  "service_jp0cklr",
+    ADMIN_TEMPLATE_ID :  "template_ldf9zca",
+    ADMIN_API :  "leZA6JWtsRHNnKt-6"
 }
 
 export {
