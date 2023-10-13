@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="text-center">
+                 내 정보
+            </h1>
+            <div class="col-12">
+                <form name="form" id="form" 
+                      method="post" 
+                      onsubmit="return myinfo()">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex">
+                        <label class="col-2 text-end pe-3" for="name">
+                          이름
+                        </label>
+                        <input type="text" 
+                               name="name" 
+                               id="name" 
+                               value="{{row.name}}" />
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <label class="col-2  text-end pe-3" for="email">
+                          이메일
+                        </label>
+                        <input type="email" 
+                               name="email" 
+                               id="email" 
+                               value="{{row.email}}" />
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <label class="col-2 text-end pe-3" for="phone">
+                          전화번호
+                        </label>
+                        <input type="phone" 
+                               name="phone" 
+                               id="phone" 
+                               value="{{row.phone}}" />
+                    </li>
+ 
+                    <li class="list-group-item list-group-item-info text-center">
+                        emailjs 정보
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <label class="col-2 text-end pe-3" for="emailjs_id">
+                          아이디
+                        </label>
+                        <input type="emailjs_id" 
+                               name="emailjs_id" 
+                               id="emailjs_id" 
+                               value="{{row.emailjs_id}}" />
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <label class="col-2 text-end pe-3" for="emailjs_template_id">
+                          템플릿 아이디
+                        </label>
+                        <input type="emailjs_template_id" 
+                               name="emailjs_template_id" 
+                               id="emailjs_template_id" 
+                               value="{{row.emailjs_template_id}}" />
+                    </li>
+                    <li class="list-group-item d-flex">
+                        <label class="col-2 text-end pe-3" for="emailjs_api">
+                          API KEY
+                        </label>
+                        <input type="emailjs_api" 
+                               name="emailjs_api" 
+                               id="emailjs_api" 
+                               value="{{row.emailjs_api}}" />
+                    </li>
+                </ul>
+                <input type="hidden" name="id" value="{{row._id}}" />
+                <div class="my-3 text-center">
+                   <button type="submit" class="btn btn-info">
+                       전 송
+                   </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myinfo(){
+           const form = document.form;
+           if(form.name.value == '') {
+              alert('이름은 필수 사항입니다.');
+              form.name.focus();
+              return false;
+           } 
+           if(form.email.value == '') {  
+              alert('이메일은 필수 사항입니다.');
+              form.email.focus();
+              return false;
+           }
+           if(form.phone.value == '') {  
+              alert('전화번호는 필수 사항입니다.');
+              form.phone.focus();
+              return false;
+           }
+           if(form.id.value == ''){
+              form.action = '/myinfo/write';
+           }else{
+              form.action = '/myinfo/update';
+           }
+           return;
+        }
+    </script>
+</body>
+</html>

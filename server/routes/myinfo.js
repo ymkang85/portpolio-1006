@@ -2,7 +2,7 @@ const express = require('express');
 const Myinfo = require('../schemas/myinfo');
 
 const router = express.Router();
-router.route('/myinfo')
+router.route('/')
     .get(async (req, res, next) => {
         try {
             const myinfo = await Myinfo.find();
@@ -11,7 +11,9 @@ router.route('/myinfo')
             console.error(err);
             next(err);
         }
-    })
+    });
+
+router.route('/write')
     .post(async (req, res, next) => {
         try {
             const myinfo = await Myinfo.create({
@@ -30,4 +32,38 @@ router.route('/myinfo')
         }
     });
 
-    module.exports = router
+router.route('/update')
+    .post(async (req, res, next) => {
+        try {
+            const myinfo = await Myinfo.updateOne({
+                _id: req.body.id
+            },{
+                email: req.body.email,
+                phone: req.body.phone,
+                name: req.body.name,
+                emailjs_id: req.body.emailjs_id,
+                emailjs_template_id: req.body.emailjs_template_id,
+                emailjs_api: req.body.emailjs_api
+            });
+            console.log(myinfo);
+            res.status(200).json(myinfo);
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    });
+
+router.route('/list')
+    .get(async (req, res, next) => {
+        try {
+            const myinfo = await Myinfo.find({});
+            const row = myinfo[0];
+            res.render('myinfo', { row });
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    })
+    .post()
+
+module.exports = router
