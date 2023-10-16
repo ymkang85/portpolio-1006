@@ -6,8 +6,8 @@ const indexRouter = require('./routes');
 const conn = require('./schemas');
 
 const myinfoRouter = require('./routes/myinfo');
-const skillsRouter = require('./routes/skills');
 const pageinfoRouter = require('./routes/pageinfo');
+const skillsRouter = require('./routes/skills');
 const portfolioRouter = require('./routes/portfolio');
 const timelineRouter = require('./routes/timeline');
 
@@ -29,13 +29,14 @@ nunjucks.configure('views', {
 });
 conn();
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'img')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 
 app.use('/', indexRouter);
 app.use('/myinfo', myinfoRouter);
-app.use('/skills', skillsRouter);
 app.use('/pageinfo', pageinfoRouter);
+app.use('/skills', skillsRouter);
 app.use('/portfolio', portfolioRouter);
 app.use('/timeline', timelineRouter);
 
@@ -45,9 +46,9 @@ app.use((req, res, next)=>{
     next(error);
 });
 
-app.use((error, req, res, next)=>{
+app.use((err, req, res, next)=>{
     res.locals.message = err.message;
-    res.lcoals.error = process.env.NODE_ENV !== 'production'? error : {};
+    res.lcoals.err = process.env.NODE_ENV !== 'production'? err : {};
     res.status(err.status || 500);
     res.send('error');
 });

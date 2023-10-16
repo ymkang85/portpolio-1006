@@ -16,7 +16,7 @@
 
 .progress {
     height: 5px;
-    background: var(--secondary-color);
+    background: var(--bg-color);
     border-radius: 0;
     box-shadow:none;
     margin-bottom: 30px;
@@ -36,7 +36,7 @@
     font-size: 16px;
     font-style: italic;
     color: var(--text-color);
-    z-index: 999;
+    z-index: 9999;
 }
 
 .serv_title{

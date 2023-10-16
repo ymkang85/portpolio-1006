@@ -14,6 +14,9 @@ const pageinfoSchema = new Schema({
     animated: {
         type: [String]
     },
+    orimg : {
+        type: [String]
+    },
     img: {
         type: [String]
     },

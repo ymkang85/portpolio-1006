@@ -1,0 +1,14 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+body.pageinfo{
+    background-color: #c1c3cf;
+}
+.container.pagecontainer {
+    max-width: 800px;
+    padding: 40px;
+}
+.pagecontainer .list-group{
+    padding: 40px;
+    background: #fff;
+}

@@ -27,18 +27,22 @@ const About = () => {
             <p>{dataabout.content}</p>
           </Col>
         </Row>
-        <Row className='sec-sp'>
+        <Row className="sec_sp">
           <Col lg="5">
-            <h3 className='color_sec py-4'>My Skills</h3>
+            <h3 className="color_sec py-4">My Skills</h3>
           </Col>
           <Col lg="7">
             {
               myskills.map((item, i) => (
                 <div key={i}>
-                  <h3 className='progress-title'>{item.name}</h3>
-                  <div className='progress'>
-                    <div className="progress-bar" style={{ width: `${item.value}%` }}>
-                      <div className="progress-value">{item.value}%</div>
+                  <h3 className="progress-title">{item.name}</h3>
+                  <div className="progress">
+                    <div className="progress-bar"
+                      style={{ width: `${item.value}%` }}>
+                      <div className="progress-value">
+                        {item.value}%
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -54,7 +58,7 @@ const About = () => {
             <table className='table caption-top'>
               <tbody>
                 {
-                  mytimeline.map((item, i)=>(
+                  mytimeline.map((item, i) => (
                     <tr key={i}>
                       <th scope='row'>{item.jobtitle}</th>
                       <td>{item.where}</td>
@@ -65,7 +69,7 @@ const About = () => {
               </tbody>
             </table>
           </Col>
-        </Row>        
+        </Row>
         <Row className='sec_sp'>
           <Col lg="5">
             <h3 className='color_sec py-4'> Services</h3>

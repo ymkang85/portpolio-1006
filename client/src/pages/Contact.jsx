@@ -66,7 +66,7 @@ const Contact = () => {
         document.getElementsByClassName('co-alert')[0].scrollIntoView();
       }
     }
-    setFormData({ ...formData, loading: false });
+    //setFormData({ ...formData, loading: false });
   };
 
   return (
@@ -99,12 +99,12 @@ const Contact = () => {
           <Col lg="5">
             <h3 className="py-4">연락을 기다립니다.</h3>
             <address>
-              <strong>EMAIL :</strong>
+              <strong>EMAIL : </strong>
               <a href={`mailto:${contact_config.ADMIN_EMAIL}`}>{contact_config.ADMIN_EMAIL}</a>
               <br />
               <br />
               <p>
-                <strong>PHONE :</strong>
+                <strong>PHONE : </strong>
                 <a href={`tel:${contact_config.ADMIN_PHONE}`}>{contact_config.ADMIN_PHONE}</a>
               </p>
             </address>
