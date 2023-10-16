@@ -3,7 +3,8 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './home.css';
 import Typewriter from 'typewriter-effect';
 import { Link } from 'react-router-dom';
-import { logotext, meta, introdata } from '../data/portfolio';
+import { meta, introdata } from '../data/portfolio';
+
 
 const Home = () => {
   return (
@@ -38,16 +39,16 @@ const Home = () => {
                   {introdata.description}
                </p>
                <div className="mt-4 ps-5 btn-box">
-                   <Link to="/portfolio" className="btn btn-light me-4 px-4">
+                   <Link to="/portfolio" className="btn btn-outline-light me-4 px-4">
                       MyPortfolio
                    </Link>
-                   <Link to="/contact" className="btn btn-outline-light px-4">
+                   <Link to="/contact" className="btn btn-outline-light me-4 px-4">
                       Contact Me
                    </Link>
                </div>
             </div>
             <div className="col-lg-6 col-12 text-center">
-               <img src={introdata.img_url} className="myimg" />
+               <img src={introdata.img_url} className="myimg" alt="homeImg" />
             </div>
          </div>
        </section>

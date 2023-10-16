@@ -12,7 +12,7 @@ const Contact = () => {
     message: '',
     loading: false,
     show: false,
-    alertmessage: '',
+    alertMessage: '',
     variant: '',
   });
 
@@ -64,9 +64,11 @@ const Contact = () => {
           loading: false
         });
         document.getElementsByClassName('co-alert')[0].scrollIntoView();
+        
       }
     }
-    //setFormData({ ...formData, loading: false });
+    // setFormData({ ...formData, loading: false });
+    
   };
 
   return (
@@ -85,7 +87,7 @@ const Contact = () => {
               onClose={() => setFormData({ ...formData, show: false })}
               dismissible
             >
-              <p className="my-0">{formData.alertmessage}</p>
+              <p className="my-0">{formData.alertMessage}</p>
             </Alert>
           </Col>
         </Row>
@@ -133,7 +135,7 @@ const Contact = () => {
           </Col>
         </Row>
       </Container>
-      <div className={formData.loading ? 'loading-bar' : 'd-none'}></div>
+      <div className={formData.loading ? 'loading-bar' : 'd-none'} ></div>
     </HelmetProvider>
   );
 };
