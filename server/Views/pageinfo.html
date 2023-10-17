@@ -14,13 +14,17 @@
 <body class="pageinfo">
     <div class="container">
         <div class="row">
-            <!--loop-->
+            <!-- loop -->
+            <div class="d-flex justify-content-between my-5">
+                <a href="/" class="btn btn-primary">목록</a>
+            </div>
             {% for rs in row %}
-            <a href="/edit/{{rs.id}}" class="col-3 my-4">
+            <a href="/pageinfo/edit/{{rs.id}}" class="col-3 my-4">
                 <div class="card">
                     {% for image in rs.img %}
                     <img src="/{{image}}" class="card-img-top" />
                     {% endfor %}
+
                     <div class="card-body">
                         <h3>{{rs.pagename}}</h3>
                         <h1>{{rs.title}}</h1>
@@ -32,10 +36,9 @@
                 </div>
             </a>
             {% endfor %}
-            <!--/loop-->
+            <!-- /loop -->
         </div>
     </div>
-
 </body>
 
 </html>
