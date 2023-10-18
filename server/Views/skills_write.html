@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">
+            {{title}}
+        </h1>
+        <form name="form" id="form" method="post" action="/skills/write" enctype="multipart/form-data">
+            <!-- loop -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="col-6">
+                        <div class="col-12 mt-3">
+                            <label calss="d-block mx-1 my-2">
+                                스킬 이름
+                            </label>
+                            <input type="text" name="name" id="name" class="form-control">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">                        
+                        <div class="col-12 mt-3">
+                                <label calss="d-block mx-1 my-2 form-label">
+                                    스킬 퍼센트
+                                </label>
+                                <div class="d-flex rangebar-ruler">
+                                    <div class="position-relative"><span>10%</span></div>
+                                    <div class="position-relative"><span>20%</span></div>
+                                    <div class="position-relative"><span>30%</span></div>
+                                    <div class="position-relative"><span>40%</span></div>
+                                    <div class="position-relative"><span>50%</span></div>
+                                    <div class="position-relative"><span>60%</span></div>
+                                    <div class="position-relative"><span>70%</span></div>
+                                    <div class="position-relative"><span>80%</span></div>
+                                    <div class="position-relative"><span>90%</span></div>
+                                    <div class="position-relative"><span>100%</span></div>
+                                </div>
+                                <input type="range" name="value" id="form-range" class="form-range" step="5">
+                            </div>
+                        
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <label class="d-block mx-1 my-2">
+                      이미지 업로드
+                     </label>
+                    <div class="row mb-3">
+                      <div class="col-12 mt-3 d-flex justify-content-end">
+                         <button type="button" class="btn btn-info me-3" id="addFile">이미지추가</button>
+                         <button type="button" class="btn btn-danger" id="delFile">이미지제거</button> 
+                      </div>
+                      <div class="col-12 img mt-3" id="myfiles">
+      
+                          <input type="file" name="img" class="form-control mb-3" /> 
+                      
+                        </div>
+                    </div>
+                  </li>
+            </ul>
+            <div class="btn-box d-flex justify-content-center my-5">
+                <button type="reset" class="btn btn-warning mx-4 px-5">취소</button>
+                <button type="submit" class="btn btn-success mx-4 px-5">전송</button>
+            </div>
+        </form>
+
+        </form>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

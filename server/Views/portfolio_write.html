@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">
+            포트폴리오 정보
+        </h1>
+        <form name="form" id="form" method="post" action="/portfolio/write" enctype="multipart/form-data">
+            <!-- loop -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="d-block mx-1 my-2">
+                                포트폴리오 카테고리
+                            </label>
+                            <select name="category" class="form-control">
+                                <option value="">선택하세요.</option>
+                                <option value="meta" selected>SEO 설정</option>
+                                <option value="introdata">Main 설정</option>
+                                <option value="portfoliodata">Portfolio 설정</option>
+                                <option value="dataabout">About 설정</option>
+                                <option value="services">SErvices 설정</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="d-block mx-1 my-2">
+                                포트폴리오 타이틀
+                            </label>
+                            <input type="text" name="title" id="title" class="form-control" />
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-12 mt-3">
+                                <label calss="d-block mx-1 my-2">
+                                    포트폴리오 내용
+                                </label>
+                                <input type="text" name="content" id="content" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-12 mt-3 d-flex justify-content-end">
+                            <button type="button" class="btn btn-info mr-3" id="addInput">폼 추가</button>
+                            <button type="button" class="btn btn-dnager" id="delInput">폼 제거</button>
+                        </div>
+                        <div class="col-12 animated mt-3" name="animated">
+                            <input type="text" name="animated" id="animated" class="animated form-control mb-3" />
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-12 mt-3 d-flex justify-content-end">
+                            <button type="button" class="btn btn-info mr-3" id="addFile">폼 추가</button>
+                            <button type="button" class="btn btn-dnager" id="delFile">폼 제거</button>
+                        </div>
+                        <div class="col-12 animated mt-3">
+                            <input type="file" name="img" class="form-control" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="btn-box d-flex justify-content-center my-5">
+                <button type="reset" class="btn btn-warning mx-4 px-5">취소</button>
+                <button type="submit" class="btn btn-success mx-4 px-5">전송</button>
+            </div>
+        </form>
+    </div>
+    <script>
+
+
+        const addForm = (n) => {
+            if (n == 1) {
+                const inputList = document.getElementsByClassName('animated');
+                const newInput = document.createElement('input');
+                newInput.type = 'text';
+                newInput.classList.add('animated');
+                newInput.classList.add('form-control');
+                newInput.classList.add('mb-3');
+                inputList.appendChild(newInput);
+            } else {
+                alert('더이상 삭제할 수 없습니다.');
+            }
+        }
+
+        const delForm = (n) => {
+            if (n == 1) {
+                const delInputs = document.getElementsByClassName('animated');
+                const maxInput = delInputs.length;
+                if (maxInput > 1) {
+                    const lastInput = delInputs[maxInput - 1];
+                    lastInput.parentNode.removeChild(lastInput);
+                } else {
+                    alert('더이상 삭제할 수 없습니다.');
+                }
+            }
+        }
+
+        document.getElementById('addInput').addEventListener('click', () => {
+            addForm(1);
+        });
+        document.getElementById('delInput').addEventListener('click', () => {
+            delForm(1);
+        });
+    </script>
+</body>
+
+</html>

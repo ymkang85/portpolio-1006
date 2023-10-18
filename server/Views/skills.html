@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="pageinfo">
+    <div class="container">
+       <h1 class="my-5 py-4 text-center">{{ title }}</h1>
+       <div class="d-flex justify-content-between my-5">
+          <a href="/" class="btn btn-primary">목록</a>
+          <a href="./write" class="btn btn-success">데이터입력</a>
+       </div>
+       <div class="row">
+        <!-- loop -->
+          
+              <ul class="list-group">
+                {% for rs in row %} 
+                 <li class="list-group-item d-flex">
+                     {% if rs.img %}
+                     <div class="col-2 pe-4">
+                        <img src="/skills/{{rs.img}}" class="img-fluid" />
+                     </div>
+                     <div class="col-6 d-flex align-items-center">
+                        {{rs.name}}
+                     </div>
+                     {% else %}
+                     <div class="col-8 d-flex align-items-center">
+                        {{rs.name}}
+                     </div>
+                     {% endif %}
+                     <div class="col-2  d-flex align-items-center">
+                        {{rs.value}}%
+                     </div>
+                     <div class="col-2 d-flex justify-content-around align-items-center">
+                        <a href="./del/{{rs.id}}" class="btn btn-danger">삭제</a>
+                        <a href="./edit/{{rs.id}}" class="btn btn-warning">수정</a>
+                     </div>
+                 </li>
+                 {% endfor %}
+              </ul>
+
+        <!-- /loop -->   
+       </div>
+       <div class="d-flex justify-content-end my-5">
+          <a href="./write" class="btn btn-success">데이터입력</a>
+       </div>
+    </div>
+</body>
+</html>

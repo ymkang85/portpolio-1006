@@ -8,6 +8,8 @@ const timelineSchema = new Schema({
     },
     where: String,
     wdate: String,
+    orimg: String,
+    img: String,
     createAt: {
         type: Date,
         default: Date.now

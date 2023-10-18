@@ -4,8 +4,13 @@ const nunjucks = require('nunjucks');
 const fs = require('fs');
 const indexRouter = require('./routes');
 const conn = require('./schemas');
+
 const myinfoRouter = require('./routes/myinfo');
 const pageinfoRouter = require('./routes/pageinfo');
+const skillsRouter = require('./routes/skills');
+const portfolioRouter = require('./routes/portfolio');
+const timelineRouter = require('./routes/timeline');
+
 const app = express();
 
 try{
@@ -29,8 +34,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
+
 app.use('/myinfo', myinfoRouter);
 app.use('/pageinfo', pageinfoRouter);
+app.use('/skills', skillsRouter);
+app.use('/portfolio', portfolioRouter);
+app.use('/timeline', timelineRouter);
 
 app.use((req, res, next)=>{
     const error = new Error(`${req.method} ${req.url} 라우터를 찾을 수 없습니다.`);

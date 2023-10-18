@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="portfolio">
+    <div class="container">
+        <div class="row">
+            <!-- loop -->
+            <div class="d-flex justify-content-between my-5">
+                <a href="/" class="btn btn-primary">목록</a>
+            </div>
+            {% for rs in row %}
+            <a href="/portfolio/edit/{{rs.id}}" class="col-3 my-4">
+                <div class="card">
+                    {% for image in rs.img %}
+                    <img src="/{{image}}" class="card-img-top" />
+                    {% endfor %}
+
+                    <div class="card-body">
+                        <h3>{{rs.category}}</h3>
+                        <h1>{{rs.title}}</h1>
+                        <p>{{rs.content}}</p>
+                        <p>{{rs.link}}</p>                        
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            <!-- /loop -->
+        </div>
+    </div>
+</body>
+
+</html>

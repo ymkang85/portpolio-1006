@@ -12,6 +12,8 @@ const skillsSchema = new Schema({
         require: true,
         defalut: 50
     },
+    orimg: String,
+    img: String,
     createAt: {
         type: Date,
         default: Date.now
