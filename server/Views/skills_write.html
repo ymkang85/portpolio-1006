@@ -1,83 +1,76 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
-    <link rel="stylesheet" href="/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
+
 <body class="pageinfo">
-    <div class="container pagecontainer mt-5">
-        <h1 class="text-center">
-                 페이지 정보
-        </h1>
-        <form name="form" id="form" 
-              method="post" 
-              action="/skills/write"
-              enctype="multipart/form-data"
-        >
-        <!-- loop -->    
-        <ul class="list-group">
-         
-             <li class="list-group-item">
-                <div class="row">
-                  <div class="col-12 mt-3">
-                     <label class="d-block mx-1 my-2">
-                      스킬 이름
-                     </label>
-                     <input type="text" 
-                            name="name" 
-                            id="name" 
-                            class="form-control" 
-                     >
-                   </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-               <div class="row">
-                 <div class="col-12 mt-3">
-                  <label class="d-block mx-1 my-2 form-label">
-                     스킬 퍼센트
-                    </label>
-                    <div class="d-flex rangebar-ruler">
-                       <div class="position-relative"><span>10%</span></div>
-                       <div class="position-relative"><span>20%</span></div>
-                       <div class="position-relative"><span>30%</span></div>
-                       <div class="position-relative"><span>40%</span></div>
-                       <div class="position-relative"><span>50%</span></div>
-                       <div class="position-relative"><span>60%</span></div>
-                       <div class="position-relative"><span>70%</span></div>
-                       <div class="position-relative"><span>80%</span></div>
-                       <div class="position-relative"><span>90%</span></div>
-                       <div class="position-relative"><span>100%</span></div>
-                    </div>
-                    <input type="range" name="value" class="form-range" id="form-range" step="5">
-                  </div>
-               </div>
-           </li>      
+  <div class="container pagecontainer mt-5">
+    <h1 class="text-center">
+      페이지 정보
+    </h1>
+    <form name="form" id="form" method="post" action="/skills/write" enctype="multipart/form-data">
+      <!-- loop -->
+      <ul class="list-group">
 
-            <li class="list-group-item">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-12 mt-3">
               <label class="d-block mx-1 my-2">
-                이미지 업로드
-               </label>
-              <div class="row mb-3">
-                <div class="col-12 img mt-3" id="myfiles">
-                    <input type="file" name="img" class="form-control mb-3" /> 
-                  </div>
+                스킬 이름
+              </label>
+              <input type="text" name="name" id="name" class="form-control">
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-12 mt-3">
+              <label class="d-block mx-1 my-2 form-label">
+                스킬 퍼센트
+              </label>
+              <div class="d-flex rangebar-ruler">
+                <div class="position-relative"><span>10%</span></div>
+                <div class="position-relative"><span>20%</span></div>
+                <div class="position-relative"><span>30%</span></div>
+                <div class="position-relative"><span>40%</span></div>
+                <div class="position-relative"><span>50%</span></div>
+                <div class="position-relative"><span>60%</span></div>
+                <div class="position-relative"><span>70%</span></div>
+                <div class="position-relative"><span>80%</span></div>
+                <div class="position-relative"><span>90%</span></div>
+                <div class="position-relative"><span>100%</span></div>
               </div>
-            </li>
-        </ul>
-        <div class="btn-box d-flex justify-content-center my-5">
-           <button type="reset" id="addFile" class="btn btn-warning mx-4 px-5"> 취소 </button>
-           <button type="submit" id="delFile" class="btn btn-success mx-4 px-5"> 전송 </button>
-        </div>
-        <!-- / loop -->
-        </form>
-      </div>      
+              <input type="range" name="value" class="form-range" id="form-range" step="5">
+            </div>
+          </div>
+        </li>
 
-
-
+        <li class="list-group-item">
+          <label class="d-block mx-1 my-2">
+            이미지 업로드
+          </label>
+          <div class="row mb-3">
+            <div class="col-12 img mt-3" id="myfiles">
+              <input type="file" name="img" class="form-control mb-3" />
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="btn-box d-flex justify-content-center my-5">
+        <button type="reset" id="addFile" class="btn btn-warning mx-4 px-5"> 취소 </button>
+        <button type="submit" id="delFile" class="btn btn-success mx-4 px-5"> 전송 </button>
+      </div>
+      <!-- / loop -->
+    </form>
+  </div>
 </body>
+
 </html>

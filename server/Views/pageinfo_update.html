@@ -25,17 +25,20 @@
                             <label class="d-block mx-1 my-2">
                                 페이지 제목
                             </label>
-                            <select class="form-control" id="pagename" name="pagename">
+                            <!-- <select id="pagename" class="form-control" name="pagename">
+                         <option value="">선택하세요.</option>
+                         <option value="meta" {{select.sa}}>SEO 설정</option>
+                         <option value="introdata" {{select.sb}}>MAIN 설정</option>
+                         <option value="portfoliodata" {{select.sc}}>Portfolio설정</option>
+                         <option value="databout" {{select.sd}}>ABOUT 설정</option>
+                         <option value="services" {{select.se}}>SERVICES 설정</option>
+                   </select> -->
+                            <select id="pagename" class="form-control" name="pagename">
                                 <option value="">선택하세요.</option>
-                                    <!-- <option value="meta"{{select.sa}}>SEO 설정</option>
-                                    <option value="introdata"{{select.sb}}>MAIN 설정</option>
-                                    <option value="portfoliodata"{{select.sc}}>Portfolio설정</option>
-                                    <option value="databout"{{select.sd}}>ABOUT 설정</option>
-                                    <option value="services"{{select.se}}>SERVICES 설정</option> -->
                                 <option value="meta">SEO 설정</option>
                                 <option value="introdata">MAIN 설정</option>
                                 <option value="portfoliodata">Portfolio설정</option>
-                                <option value="dataabout">ABOUT 설정</option>
+                                <option value="databout">ABOUT 설정</option>
                                 <option value="services">SERVICES 설정</option>
                             </select>
                         </div>
@@ -87,14 +90,14 @@
                         <div class="col-12 img mt-3" id="myfiles">
                             {% for row in rs.orimg %}
                             <div class="d-flex align-items-center border-bottom">
-                                <div class="col-3">
+                                <div class="col-2">
                                     <label>
                                         <input type="checkbox" value="1" name="imgchk" class="imgchk">
                                         이미지업데이트
                                     </label>
                                 </div>
                                 <div class="col-3" id="imgtxt_{{loop.index}}">{{row}}</div>
-                                <div class="col-6">
+                                <div class="col-7">
                                     <input type="file" name="img" class="input_img form-control mb-3" />
                                 </div>
                             </div>
@@ -113,6 +116,16 @@
     </div>
 
     <script>
+        function selectControl(str) {
+            const el = document.getElementById("pagename");
+            const maxOpt = el.options.length;
+            for (let i = 0; i < maxOpt; i++) {
+                if (el.options[i].value == str) {
+                    el.options[i].selected = true;
+                }
+            }
+        }
+        selectControl("{{rs.pagename}}");
 
         //체크박스와 텍스트, input의 요소를 가져옴.
         var checkboxs = document.querySelectorAll(".imgchk");
@@ -191,20 +204,7 @@
         });
         document.getElementById('delFile').addEventListener('click', () => {
             delForm(2);
-        });
-
-        function selectControl(str) {
-            const el = document.getElementById("pagename");
-            const maxOpt = el.options.length;
-            for (let i = 0; i < maxOpt; i++) {
-                if (el.options[i].value == str) {
-                    el.options[i].selected = true;
-                }
-            }
-        }
-
-        selectControl("{{rs.pagename}}");
-
+        }); 
     </script>
 
 </body>
