@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="pageinfo">
+    <div class="container pagecontainer mt-5">
+        <h1 class="text-center">
+            페이지 정보
+        </h1>
+        <form name="form" id="form" method="post" action="/pageinfo/edit" enctype="multipart/form-data">
+            <!-- loop -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label class="d-block mx-1 my-2">
+                                페이지 제목
+                            </label>
+                            <!-- <select id="pagename" class="form-control" name="pagename">
+                         <option value="">선택하세요.</option>
+                         <option value="meta" {{select.sa}}>SEO 설정</option>
+                         <option value="introdata" {{select.sb}}>MAIN 설정</option>
+                         <option value="portfoliodata" {{select.sc}}>Portfolio설정</option>
+                         <option value="databout" {{select.sd}}>ABOUT 설정</option>
+                         <option value="services" {{select.se}}>SERVICES 설정</option>
+                   </select> -->
+                            <select id="pagename" class="form-control" name="pagename">
+                                <option value="">선택하세요.</option>
+                                <option value="meta">SEO 설정</option>
+                                <option value="introdata">MAIN 설정</option>
+                                <option value="portfoliodata">Portfolio설정</option>
+                                <option value="databout">ABOUT 설정</option>
+                                <option value="services">SERVICES 설정</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="d-block mx-1 my-2">
+                                페이지 타이틀
+                            </label>
+                            <input type="text" name="title" id="title" class="form-control" value="{{rs.title}}" />
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <label class="d-block mx-1 my-2">
+                                페이지 내용
+                            </label>
+                            <textarea name="content" id="content" class="form-control"
+                                rows="5">{{rs.content}}</textarea>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <label class="d-block mx-1 my-2">
+                        배열 텍스트
+                    </label>
+                    <div class="row">
+                        <div class="col-12 mt-3 d-flex justify-content-end">
+                            <button type="button" class="btn btn-info me-3" id="addInput">폼추가</button>
+                            <button type="button" class="btn btn-danger" id="delInput">폼제거</button>
+                        </div>
+                        <div class="col-12 mt-3" id="animated">
+                            {% for row in rs.animated %}
+                            <input type="text" name="animated" value="{{row}}" class="form-control animated mb-3" />
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <label class="d-block mx-1 my-2">
+                        이미지 업로드
+                    </label>
+                    <div class="row mb-3">
+                        <div class="col-12 mt-3 d-flex justify-content-end">
+                            <button type="button" class="btn btn-info me-3" id="addFile">폼추가</button>
+                            <button type="button" class="btn btn-danger" id="delFile">폼제거</button>
+                        </div>
+                        <div class="col-12 img mt-3" id="myfiles">
+                            {% for row in rs.orimg %}
+                            <div class="d-flex align-items-center border-bottom">
+                                <div class="col-2">
+                                    <label>
+                                        <input type="checkbox" value="1" name="imgchk" class="imgchk">
+                                        이미지업데이트
+                                    </label>
+                                </div>
+                                <div class="col-3" id="imgtxt_{{loop.index}}">{{row}}</div>
+                                <div class="col-7">
+                                    <input type="file" name="img" class="input_img form-control mb-3" />
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="btn-box d-flex justify-content-center my-5">
+                <button type="reset" id="addFile" class="btn btn-warning mx-4 px-5"> 취소 </button>
+                <button type="submit" id="delFile" class="btn btn-success mx-4 px-5"> 전송 </button>
+            </div>
+            <!-- / loop -->
+            <input type="hidden" name="id" value="{{rs.id}}">
+        </form>
+    </div>
+
+    <script>
+        function selectControl(str) {
+            const el = document.getElementById("pagename");
+            const maxOpt = el.options.length;
+            for (let i = 0; i < maxOpt; i++) {
+                if (el.options[i].value == str) {
+                    el.options[i].selected = true;
+                }
+            }
+        }
+        selectControl("{{rs.pagename}}");
+
+        //체크박스와 텍스트, input의 요소를 가져옴.
+        var checkboxs = document.querySelectorAll(".imgchk");
+        var imgInputs = document.querySelectorAll(".input_img");
+
+        /* 
+         checkboxs에 이벤트 리스너를 만듬 , 여러개 있을 수 있기 때문(배열)에 
+         배열을 이용(forEach) 
+        */
+        checkboxs.forEach((checkbox, index) => {
+            var imgText = document.getElementById("imgtxt_" + (index + 1));
+            var myText = imgText.textContent;
+            checkbox.addEventListener("click", () => {
+                if (checkbox.checked) {
+                    imgText.textContent = "(삭제)" + myText;
+                    imgInputs[index].style.display = 'block';
+                } else {
+                    imgText.textContent = myText;
+                    imgInputs[index].style.display = 'none';
+                }
+            })
+        })
+
+        const addForm = (n) => {
+            if (n == 1) {
+                const inputList = document.getElementById('animated');
+                const newInput = document.createElement('input');
+                newInput.type = 'text';
+                newInput.name = 'animated';
+                newInput.classList.add('animated');
+                newInput.classList.add('form-control');
+                newInput.classList.add('mb-3');
+                inputList.appendChild(newInput);
+            } else {
+                const fileList = document.getElementById('myfiles');
+                const newFile = document.createElement('input');
+                newFile.type = 'file';
+                newFile.name = 'img';
+                newFile.classList.add('img');
+                newFile.classList.add('form-control');
+                newFile.classList.add('mb-3');
+                fileList.appendChild(newFile);
+            }
+        }
+
+        const delForm = (n) => {
+            if (n == 1) {
+                const delInputs = document.getElementsByClassName('animated');
+                const maxInput = delInputs.length;
+                if (maxInput > 1) {
+                    const lastInput = delInputs[maxInput - 1];
+                    lastInput.parentNode.removeChild(lastInput);
+                } else {
+                    alert('더이상 삭제할수 없습니다.');
+                }
+            } else {
+                const delFiles = document.getElementsByClassName('img');
+                const maxInput = delFiles.length;
+                if (maxInput > 1) {
+                    const lastInput = delFiles[maxInput - 1];
+                    lastInput.parentNode.removeChild(lastInput);
+                } else {
+                    alert('더이상 삭제할수 없습니다.');
+                }
+            }
+        }
+
+        document.getElementById('addInput').addEventListener('click', () => {
+            addForm(1);
+        });
+        document.getElementById('delInput').addEventListener('click', () => {
+            delForm(1);
+        });
+        document.getElementById('addFile').addEventListener('click', () => {
+            addForm(2);
+        });
+        document.getElementById('delFile').addEventListener('click', () => {
+            delForm(2);
+        }); 
+    </script>
+
+</body>
+
+</html>

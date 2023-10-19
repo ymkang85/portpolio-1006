@@ -87,3 +87,7 @@ a:hover>.card {
     right: -1px;
     top: 5px;
 }
+.card-body .btn-delete{
+    position : absolute;
+    display: inline-block;
+}

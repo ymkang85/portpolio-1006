@@ -124,4 +124,16 @@ router.route('/edit')
       }
    });
 
+router.route('/delete/:id')
+   .get(async (req, res, next) => {
+      try {
+         const id = req.params.id;
+         const pageinfo = await Pageinfo.deleteOne({ _id: id });         
+         res.render('pageinfo');
+      } catch (err) {
+         console.error(err);
+         next(err);
+      }
+   });
+
 module.exports = router;
