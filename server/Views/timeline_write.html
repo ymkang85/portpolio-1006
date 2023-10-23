@@ -8,52 +8,80 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="/css/bootstrap-datepicker.css" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 
-<body class="pageinfo">
-  <div class="container">
-    <h1 class="my-5 py-4 text-center">{{ title }}</h1>
-    <div class="d-flex justify-content-between my-5">
-      <a href="/" class="btn btn-primary">목록</a>
-      <a href="./write" class="btn btn-success">데이터입력</a>
-    </div>
-    <div class="row">
+<body class="timeline">
+  <div class="container pagecontainer mt-5">
+    <h1 class="text-center">
+      타임라인 정보
+    </h1>
+    <form name="form" id="form" method="post" action="/timeline/write" enctype="multipart/form-data">
       <!-- loop -->
-
       <ul class="list-group">
-        {% for rs in row %}
-        <li class="list-group-item d-flex">
-          {% if rs.img %}
-          <div class="col-2 pe-4">
-            <img src="/timeline/{{rs.img}}" class="img-fluid" />
-          </div>
-          <div class="col-3 d-flex align-items-center">
-            {{rs.jobtitle}}
-          </div>
-          {% else %}
-          <div class="col-5 d-flex align-items-center">
-            {{rs.jobtitle}}
-          </div>
-          {% endif %}
 
-          <div class="col-3 d-flex align-items-center">{{rs.where}}</div>
-          <div class="col-2 d-flex align-items-center">{{rs.wdate}}</div>
-
-          <div class="col-2 d-flex justify-content-around align-items-center">
-            <a href="./del/{{rs.id}}" class="btn btn-danger">삭제</a>
-            <a href="./edit/{{rs.id}}" class="btn btn-warning">수정</a>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-12 mt-3">
+              <label class="d-block mx-1 my-2">
+                내용
+              </label>
+              <input type="text" name="jobtitle" id="jobtitle" class="form-control">
+            </div>
           </div>
         </li>
-        {% endfor %}
-      </ul>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-12 mt-3">
+              <label class="d-block mx-1 my-2">
+                장소
+              </label>
+              <input type="text" name="where" id="where" class="form-control">
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-12 mt-3">
+              <label class="d-block mx-1 my-2 form-label">
+                날짜
+              </label>
+              <input type="text" id="datePicker" name="wdate" class="form-control">
+            </div>
+          </div>
+        </li>
 
-      <!-- /loop -->
-    </div>
-    <div class="d-flex justify-content-end my-5">
-      <a href="./write" class="btn btn-success">데이터입력</a>
-    </div>
+        <li class="list-group-item">
+          <label class="d-block mx-1 my-2">
+            이미지 업로드
+          </label>
+          <div class="row mb-3">
+            <div class="col-12 img mt-3" id="myfiles">
+              <input type="file" name="img" class="form-control mb-3" />
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="btn-box d-flex justify-content-center my-5">
+        <button type="reset" id="addFile" class="btn btn-warning mx-4 px-5"> 취소 </button>
+        <button type="submit" id="delFile" class="btn btn-success mx-4 px-5"> 전송 </button>
+      </div>
+      <!-- / loop -->
+    </form>
   </div>
+
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script src="/js/bootstrap-datepicker.min.js"></script>
+  <script>
+    $(function () {
+      $('#datePicker').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        language: "ko"
+      });
+    });
+  </script>
 </body>
 
 </html>

@@ -20,6 +20,9 @@ const pageinfoSchema = new Schema({
     img: {
         type: [String]
     }, 
+    category: {
+        type: Schema.Types.ObjectId, ref: "Category" // 외래키 등록
+    },
     createAt: {
         type: Date,
         default: Date.now

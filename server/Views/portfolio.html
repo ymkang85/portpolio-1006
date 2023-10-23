@@ -1,130 +1,202 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
-    <link rel="stylesheet" href="/css/style.css" />
-    <style>
-      .popup-category{
-         display:none;
-         position:fixed;
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="/css/bootstrap.min.css" />
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+   <link rel="stylesheet" href="/css/style.css" />
+   <style>
+      .popup-category {
+         display: none;
+         position: fixed;
          top: 100px;
          left: 50%;
          transform: translateX(-50%);
-         width:250px;
-         padding:30px;
-         border:1px solid #ededed;
-         background:#fff;
-         border-radius:10px;
-         box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+         width: 250px;
+         padding: 30px;
+         border: 1px solid #ededed;
+         background: #fff;
+         border-radius: 10px;
+         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
       }
-    </style>
+   </style>
 </head>
+
 <body class="pageinfo">
-    <div class="container">
-       <h1 class="my-5 py-4 text-center">페이지설정</h1>
-       <div class="d-flex justify-content-between my-5">
-          <a href="/" class="btn btn-primary">목록</a>
-          <div class="btn-group">
-             <button class="btn btn-info addCategory">카테고리설정</button>
-             <a href="./write" class="btn btn-success">데이터입력</a>
-          </div>
-       </div>
-       <div class="row">
-        <!-- loop -->
-           {% for rs in row %} 
-           <a href="./edit/{{rs.id}}" class="col-4 my-4">
-              <div class="card">
-                {% for image in rs.img %}
-                   <img src="/{{image}}" class="card-img-top" />    
-                {% endfor %}
-                 <div class="card-body">
-                    <h3>{{rs.pagename}}</h3>
-                    <h1>{{rs.title}}</h1>
-                    <p>{{rs.content}}</p>
-                 {% for ani in rs.animated %}
-                    <p>{{ani}}</p>
-                 {% endfor %}
-                 </div>
-              </div>
-           </a>
-           {% endfor %}
-        <!-- /loop -->   
-       </div>
-       <div class="d-flex justify-content-end my-5">
-          <a href="./write" class="btn btn-success">데이터입력</a>
-       </div>
-    </div>
-
-    <div class="popup-category">
-      <form name="category-form" action="/portfolio/category-update" method="post">
-        <ul id="sortable" class="list-group">
+   <div class="container">
+      <h1 class="my-5 py-4 text-center">페이지설정</h1>
+      <div class="d-flex justify-content-between my-5">
+         <a href="/" class="btn btn-primary">목록</a>
+         <div class="btn-group">
+            <button class="btn btn-info addCategory">카테고리설정</button>
+            <a href="./write" class="btn btn-success">데이터입력</a>
+         </div>
+      </div>
+      <div class="row">
          <!-- loop -->
-           <li class="ui-state-default list-group-item py-3 d-flex align-items-center">
-             <div class="col-11">
-                <input type="text" 
-                    name="category" 
-                    value="카테고리1" 
-                    class="form-control" />
-             </div>
-             <div class="col-1 text-center">
-                <a href="#" class="btn-close"></a>
-             </div>
-           </li>
+         {% for rs in row %}
+         <a href="./edit/{{rs.id}}" class="col-4 my-4">
+            <div class="card">
+               {% for image in rs.img %}
+               <img src="/{{image}}" class="card-img-top" />
+               {% endfor %}
+               <div class="card-body">
+                  <h3>{{rs.pagename}}</h3>
+                  <h1>{{rs.title}}</h1>
+                  <p>{{rs.content}}</p>
+                  {% for ani in rs.animated %}
+                  <p>{{ani}}</p>
+                  {% endfor %}
+               </div>
+            </div>
+         </a>
+         {% endfor %}
          <!-- /loop -->
-           
-        </ul>
-        <div class="d-flex pt-4 justify-content-between">
-           <button type="button" class="btn btn-warning closebtn">닫기</button>
-           <button type="button" class="btn btn-info addbtn">추가</button>
-           <button type="button" class="btn btn-danger">전송</button>
-        </div>
-        </form>
-    </div>
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/js/jquery-ui-1.9.2.custom.min.js" integrity="sha512-/j/PhXKFsf5Gc8eMuXoUn1tBjDJthhC5kBpOBPlNyANs9vxbJ8DM/gsciQ4ykymnUtHuk0yedLnlpg7DPmjZZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-       $(function(){
+      </div>
+      <div class="d-flex justify-content-end my-5">
+         <a href="./write" class="btn btn-success">데이터입력</a>
+      </div>
+   </div>
 
-      const popup_update = $('.popup-category').html();   
-      const popup_insert = `
-          <form name="category-form" action="/portfolio/category-write" method="post">
+   <div class="popup-category">
+      <form name="category-form" action="/portfolio/category-update" method="post">
+         <ul id="sortable" class="list-group">
+
+            <!-- loop -->
+            {% for cat in rs %}
+            <li class="ui-state-default list-group-item py-3 d-flex align-items-center">
+               <div class="col-11">
+                  <input type="text" name="category" value="{{cat.name}}" class="form-control" />
+               </div>
+               <input type="hidden" name="cate_id" value="{{cat.id}}" />
+               <div class="col-1 text-center">
+                  <a href="#" class="btn-close del-category" data-id="{{cat.id}}"></a>
+               </div>
+            </li>
+            {% endfor %}
+            <!-- /loop -->
+
+         </ul>
+         <div class="d-flex pt-4 justify-content-between">
+            <button type="button" class="btn btn-warning closebtn">닫기</button>
+            <button type="button" class="btn btn-info addbtn">추가</button>
+            <button type="button" class="btn btn-danger cate-update">전송</button>
+         </div>
+      </form>
+   </div>
+   <script src="//code.jquery.com/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/js/jquery-ui-1.9.2.custom.min.js" integrity="sha512-/j/PhXKFsf5Gc8eMuXoUn1tBjDJthhC5kBpOBPlNyANs9vxbJ8DM/gsciQ4ykymnUtHuk0yedLnlpg7DPmjZZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script>
+      $(function () {
+         //show에 값이 있으면 
+         {% if show %}
+         $('.popup-category').fadeIn(400);
+         {% endif %}
+         const popup_update = $('.popup-category').html();
+         const popup_insert = `
+        <form name="category-form" id="category-form" action="/portfolio/category-write" method="post">
         <ul class="list-group">
            <li class="ui-state-default list-group-item py-3">
-             <input type="text" 
-                    name="category" 
-                    value="" 
-                    class="form-control" />
+             <input type="text" name="category" id="category" value="" class="form-control" />
+              <input type="hidden" name="num" id="num" value="{{maxNum}}" />     
            </li>
         </ul>
         <div class="d-flex pt-4 justify-content-between">
            <button type="button" class="btn btn-warning closebtn">닫기</button>
            <button type="button" class="btn btn-danger updatebtn">수정</button>
-           <button type="button" class="btn btn-info">전송</button>
+           <button type="button" class="btn btn-info cate-write">전송</button>
         </div>
         </form>
     </div>
           `;
 
-         $('.addCategory').click(function(){
+         $('.addCategory').click(function () {
             $('.popup-category').fadeIn(400);
          });
-       $("#sortable").sortable();
+         $("#sortable").sortable();
 
-       $(document).on('click', '.closebtn', function(){
-         $('.popup-category').fadeOut(400);
-       });
-       $(document).on('click', '.addbtn', function(){
-          $('.popup-category').html(popup_insert);
-       });
-       $(document).on('click', '.updatebtn', function(){
-          $('.popup-category').html(popup_update);
-          $("#sortable").sortable();
-       });
-       })
-    </script>
+         $(document).on('click', '.closebtn', function () {
+            $('.popup-category').fadeOut(400);
+         });
+         $(document).on('click', '.addbtn', function () {
+            $('.popup-category').html(popup_insert);
+         });
+         $(document).on('click', '.updatebtn', function () {
+            $('.popup-category').html(popup_update);
+            $("#sortable").sortable();
+         });
+
+         $(document).on('click', '.cate-update', function () {
+            const data = $("input[name='category']").serializeArray();
+            const id = $("input[name='cate_id']").serializeArray();
+            $.ajax({
+               type: "post",
+               url: '/portfolio/category/update',
+               dataType: 'json',
+               data: { data, id },
+               success: function () { },
+               error: function () { }
+            })
+         });
+
+         $(document).on('click', '.cate-write', function () {
+            const category = $("#category").val();
+            const num = Number($("#num").val()) + 1;
+            $.ajax({
+               url: '/portfolio/category/write',
+               type: 'post',
+               dataType: 'json',
+               data: { category: category, num: num },
+               success: function (rs) {
+                  if (rs == 1) {
+                     alert("성공적으로 등록되었습니다.");
+                     const addList = `
+                   <li class="ui-state-default list-group-item py-3 d-flex align-items-center">
+                     <div class="col-11">
+                         <input type="text" 
+                             name="category" 
+                             value="${category}" 
+                             class="form-control" />
+                     </div>
+                     <input type="hidden" name="cate_id" value="${num}" />
+                     <div class="col-1 text-center">
+                         <a href="#" class="btn-close"></a>
+                      </div>
+                    </li>
+                   `;                     
+                     location.reload();
+                  }
+               },
+               error: function (err) {
+                  console.log(err);
+               }
+            })
+         });
+
+         $(document).on('click', '.del-category', function (e) {
+            e.preventDefault();
+            const id = $(this).data("id");
+            $.ajax({
+               url: "/portfolio/category/del",
+               type: "post",
+               data: { id: id },
+               success: function (rs) {
+                  const res = parseInt(rs);
+                  if (res > 0) {
+                     alert("삭제 되었습니다.");
+                     location.href = "/portfolio/list?show=show";
+                  } else {
+                     alert("문제가 발생했습니다.");
+                  }
+               }
+            })
+         })
+      })
+   </script>
 </body>
+
 </html>
