@@ -63,16 +63,16 @@
    </div>
 
    <div class="popup-category">
-      <form name="category-form" action="/portfolio/category-update" method="post">
+      <form name="category-form" id="category-update-form" action="/portfolio/category-update" method="post">
          <ul id="sortable" class="list-group">
 
             <!-- loop -->
             {% for cat in rs %}
             <li class="ui-state-default list-group-item py-3 d-flex align-items-center">
                <div class="col-11">
-                  <input type="text" name="category" value="{{cat.name}}" class="form-control" />
+                  <input type="text" name="category[]" value="{{cat.name}}" class="form-control" />
                </div>
-               <input type="hidden" name="cate_id" value="{{cat.id}}" />
+               <input type="hidden" name="cate_id[]" value="{{cat.id}}" />
                <div class="col-1 text-center">
                   <a href="#" class="btn-close del-category" data-id="{{cat.id}}"></a>
                </div>
@@ -89,7 +89,9 @@
       </form>
    </div>
    <script src="//code.jquery.com/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/js/jquery-ui-1.9.2.custom.min.js" integrity="sha512-/j/PhXKFsf5Gc8eMuXoUn1tBjDJthhC5kBpOBPlNyANs9vxbJ8DM/gsciQ4ykymnUtHuk0yedLnlpg7DPmjZZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/js/jquery-ui-1.9.2.custom.min.js"
+      integrity="sha512-/j/PhXKFsf5Gc8eMuXoUn1tBjDJthhC5kBpOBPlNyANs9vxbJ8DM/gsciQ4ykymnUtHuk0yedLnlpg7DPmjZZg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script>
       $(function () {
          //show에 값이 있으면 
@@ -101,7 +103,11 @@
         <form name="category-form" id="category-form" action="/portfolio/category-write" method="post">
         <ul class="list-group">
            <li class="ui-state-default list-group-item py-3">
-             <input type="text" name="category" id="category" value="" class="form-control" />
+             <input type="text" 
+                    name="category" 
+                    id="category"
+                    value="" 
+                    class="form-control" />
               <input type="hidden" name="num" id="num" value="{{maxNum}}" />     
            </li>
         </ul>
@@ -131,15 +137,23 @@
          });
 
          $(document).on('click', '.cate-update', function () {
-            const data = $("input[name='category']").serializeArray();
-            const id = $("input[name='cate_id']").serializeArray();
+            const data = $("#category-update-form").serialize();
             $.ajax({
                type: "post",
                url: '/portfolio/category/update',
                dataType: 'json',
-               data: { data, id },
-               success: function () { },
-               error: function () { }
+               data: data,
+               success: function (rs) {
+                  if (rs == 1) {
+                     alert("성공적으로 수정되었습니다.");
+                     location.href = "/portfolio/list?show=show";
+                  } else {
+                     alert("에러가 발생했습니다.");
+                  }
+               },
+               error: function (err) {
+                  console.error(err);
+               }
             })
          });
 
@@ -167,7 +181,9 @@
                          <a href="#" class="btn-close"></a>
                       </div>
                     </li>
-                   `;                     
+                   `;
+                     //  $('.popup-category').html(popup_update).prepend(addList);
+                     //  $("#sortable").sortable();
                      location.reload();
                   }
                },

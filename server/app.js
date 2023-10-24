@@ -4,15 +4,12 @@ const nunjucks = require('nunjucks');
 const fs = require('fs');
 const indexRouter = require('./routes');
 const connect = require('./schemas');
-
 const myinfoRouter = require('./routes/myinfo');
 const pageinfoRouter = require('./routes/pageinfo');
 const skillsRouter = require('./routes/skills');
 const timelineRouter = require('./routes/timeline');
 const portfolioRouter = require('./routes/portfolio');
-
 const app = express();
-
 
 try {
     fs.readdirSync('img');
