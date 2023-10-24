@@ -38,6 +38,7 @@ router.route('/write')
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
+            fs.moveSync('./img/'+req.files[0].filename, './img/pageinfo/'+req.files[0].filename);
             fileupload = {
                orimg: req.files.map(file => file.originalname),
                img: req.files.map(file => file.filename)
@@ -97,9 +98,8 @@ router.route('/edit')
          let fileupload;
 
          for (let i = 0; i < req.files.length; i++) {
-            fs.moveSync('./img/' + req.files[i].filename, '/img/pageinfo/' + req.files.filename);
+            fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);            
          }
-
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
@@ -125,11 +125,11 @@ router.route('/edit')
    });
 
 router.route('/delete/:id')
-   .get(async (req, res, next) => {
+   .post(async (req, res, next) => {
       try {
          const id = req.params.id;
-         const pageinfo = await Pageinfo.deleteOne({ _id: id });         
-         res.render('pageinfo');
+         const pageinfo = await Pageinfo.deleteOne({ _id: id });
+         res.redirect('/pageinfo/list');
       } catch (err) {
          console.error(err);
          next(err);

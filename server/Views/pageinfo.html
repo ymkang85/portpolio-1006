@@ -33,16 +33,29 @@
                   {% for ani in rs.animated %}
                   <p>{{ani}}</p>
                   {% endfor %}
-                  <a href="/delete" class="btn btn-danger btn-delete">삭제</a>
+                  <form action="/delete/{{rs.id}}" method="POST">
+                     <button type="submit" class="btn btn-danger btn-delete">삭제</button>
+                  </form>
                </div>
             </div>
-            
-              
+
+
          </a>
          {% endfor %}
          <!-- /loop -->
-      </div>      
+      </div>
    </div>
 </body>
+<script>
+   document.querySelectorAll('.btn-delete').forEach(button => {
+      button.addEventListener('click', (event) => {
+         event.preventDefault();
+         const form = button.parentElement;
+         if (form && form.tagName === 'FORM') {
+            form.submit();
+         }
+      });
+   });
+</script>
 
 </html>
