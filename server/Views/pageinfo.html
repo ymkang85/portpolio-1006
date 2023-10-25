@@ -50,9 +50,11 @@
    document.querySelectorAll('.btn-delete').forEach(button => {
       button.addEventListener('click', (event) => {
          event.preventDefault();
-         const form = button.parentElement;
-         if (form && form.tagName === 'FORM') {
-            form.submit();
+         if (confirm("정말 삭제하시겠습니까?")) {
+            const form = button.parentElement;
+            if (form && form.tagName === 'FORM') {
+               form.submit();
+            }
          }
       });
    });

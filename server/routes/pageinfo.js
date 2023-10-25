@@ -127,11 +127,12 @@ router.route('/edit')
 router.route('/delete/:id')
    .post(async (req, res, next) => {
       try {
-         const id = req.params.id;
-         const pageinfo = await Pageinfo.deleteOne({ _id: id });
+         const id = req.params.id;         
+         const rs = await Pageinfo.deleteOne({ _id : id });
+         console.log(rs);
          res.redirect('/pageinfo/list');
       } catch (err) {
-         console.error(err);
+         console.error("Error deleting page:", err);
          next(err);
       }
    });

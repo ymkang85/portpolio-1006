@@ -11,7 +11,7 @@
    <link rel="stylesheet" href="/css/style.css" />
 </head>
 
-<body class="pageinfo">
+<body class="portfolio">
    <div class="container pagecontainer mt-5">
       <h1 class="text-center">
          포트폴리오 등록
@@ -60,7 +60,8 @@
                      <textarea name="content" id="content" class="form-control" rows="5"></textarea>
                   </div>
                </div>
-            </li>            
+            </li>
+
             <li class="list-group-item">
                <label class="d-block mx-1 my-2">
                   이미지 업로드
@@ -87,61 +88,32 @@
    </div>
 
    <script>
-      const addForm = (n) => {
-         if (n == 1) {
-            const inputList = document.getElementById('animated');
-            const newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.name = 'animated';
-            newInput.classList.add('animated');
-            newInput.classList.add('form-control');
-            newInput.classList.add('mb-3');
-            inputList.appendChild(newInput);
-         } else {
-            const fileList = document.getElementById('myfiles');
-            const newFile = document.createElement('input');
-            newFile.type = 'file';
-            newFile.name = 'img';
-            newFile.classList.add('img');
-            newFile.classList.add('form-control');
-            newFile.classList.add('mb-3');
-            fileList.appendChild(newFile);
-         }
+      const addForm = () => {
+         const fileList = document.getElementById('myfiles');
+         const newFile = document.createElement('input');
+         newFile.type = 'file';
+         newFile.name = 'img';
+         newFile.classList.add('img');
+         newFile.classList.add('form-control');
+         newFile.classList.add('mb-3');
+         fileList.appendChild(newFile);
       }
 
-      const delForm = (n) => {
-         if (n == 1) {
-            const delInputs = document.getElementsByClassName('animated');
-            const maxInput = delInputs.length;
-            if (maxInput > 1) {
-               const lastInput = delInputs[maxInput - 1];
-               lastInput.parentNode.removeChild(lastInput);
-            } else {
-               alert('더이상 삭제할수 없습니다.');
-            }
+      const delForm = () => {
+         const delFiles = document.getElementsByClassName('img');
+         const maxInput = delFiles.length;
+         if (maxInput > 1) {
+            const lastInput = delFiles[maxInput - 1];
+            lastInput.parentNode.removeChild(lastInput);
          } else {
-            const delFiles = document.getElementsByClassName('img');
-            const maxInput = delFiles.length;
-            if (maxInput > 1) {
-               const lastInput = delFiles[maxInput - 1];
-               lastInput.parentNode.removeChild(lastInput);
-            } else {
-               alert('더이상 삭제할수 없습니다.');
-            }
+            alert('더이상 삭제할수 없습니다.');
          }
       }
-
-      document.getElementById('addInput').addEventListener('click', () => {
-         addForm(1);
-      });
-      document.getElementById('delInput').addEventListener('click', () => {
-         delForm(1);
-      });
       document.getElementById('addFile').addEventListener('click', () => {
-         addForm(2);
+         addForm();
       });
       document.getElementById('delFile').addEventListener('click', () => {
-         delForm(2);
+         delForm();
       }); 
    </script>
 

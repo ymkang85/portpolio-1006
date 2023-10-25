@@ -36,29 +36,35 @@
             <a href="./write" class="btn btn-success">데이터입력</a>
          </div>
       </div>
+      <div class="d-flex justify-content-between">
+         <!-- {% for cate in rs %}
+         <a href="">{{cate.name}}</a>
+         {% endfor %} -->
+      </div>
       <div class="row">
          <!-- loop -->
-         {% for rs in row %}
-         <a href="./edit/{{rs.id}}" class="col-4 my-4">
+         {% for rss in row %}
+         <div class="col-4 my-4">
             <div class="card">
-               {% for image in rs.img %}
-               <img src="/{{image}}" class="card-img-top" />
+               {% for image in rss.img %}
+               <a href="./edit/{{rss.id}}"><img src="/portfolio/{{image}}" class="card-img-top" /></a>
                {% endfor %}
                <div class="card-body">
-                  <h3>{{rs.pagename}}</h3>
-                  <h1>{{rs.title}}</h1>
-                  <p>{{rs.content}}</p>
-                  {% for ani in rs.animated %}
-                  <p>{{ani}}</p>
-                  {% endfor %}
+                  <h3>
+                     {{rss.category.name}}
+                  </h3>
+                  <h1>{{rss.title}}</a></h1>
+                  <p>{{rss.content}}</p>
+                  <p class="link"><a href="{{rss.link}}">{{rss.link}}</a></p>
+                  <div class="d-flex justify-content-around my-3">
+                     <a href="./edit/{{rss.id}}" class="btn btn-warning">수정</a>
+                     <a href="#" data-del="{{rss.id}}" class="btn btn-danger portfolio-del">삭제</a>
+                  </div>
                </div>
             </div>
-         </a>
+         </div>
          {% endfor %}
          <!-- /loop -->
-      </div>
-      <div class="d-flex justify-content-end my-5">
-         <a href="./write" class="btn btn-success">데이터입력</a>
       </div>
    </div>
 
@@ -193,23 +199,34 @@
             })
          });
 
+         $(".portfolio-del").click(function (e) {
+            e.preventDefault();
+            const del = $(this).data("del");
+            let y = confirm("정말로 삭제하시겠습니까?");
+            if (y) {
+               alert("삭제되었습니다.");
+            }
+         })
+
          $(document).on('click', '.del-category', function (e) {
             e.preventDefault();
-            const id = $(this).data("id");
-            $.ajax({
-               url: "/portfolio/category/del",
-               type: "post",
-               data: { id: id },
-               success: function (rs) {
-                  const res = parseInt(rs);
-                  if (res > 0) {
-                     alert("삭제 되었습니다.");
-                     location.href = "/portfolio/list?show=show";
-                  } else {
-                     alert("문제가 발생했습니다.");
+            if (confirm("정말 삭제하시겠습니까?")) {
+               const id = $(this).data("id");
+               $.ajax({
+                  url: "/portfolio/category/del",
+                  type: "post",
+                  data: { id: id },
+                  success: function (rs) {
+                     const res = parseInt(rs);
+                     if (res > 0) {
+                        alert("삭제 되었습니다.");
+                        location.href = "/portfolio/list?show=show";
+                     } else {
+                        alert("문제가 발생했습니다.");
+                     }
                   }
-               }
-            })
+               })
+            }
          })
       })
    </script>
