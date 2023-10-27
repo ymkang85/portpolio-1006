@@ -38,10 +38,12 @@ router.route('/write')
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
-            fs.moveSync('./img/' + req.files[0].filename, './img/pageinfo/' + req.files[0].filename);
-            fileupload = {
-               orimg: req.files.map(file => file.originalname),
-               img: req.files.map(file => file.filename)
+            for (let i = 0; i < req.files.length; i++) {
+               fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);
+               fileupload = {
+                  orimg: req.files.map(file => file.originalname),
+                  img: req.files.map(file => file.filename)
+               }
             }
          }
 
@@ -124,7 +126,7 @@ router.route('/edit')
       }
    });
 
-router.route('/del')
+router.route('/delete')
    .post(async (req, res, next) => {
       try {
          const id = req.body.id;
@@ -134,12 +136,11 @@ router.route('/del')
             fs.removeSync('./img/pageinfo/' + img);
          }
          //db 삭제
-         const rs = await Pageinfo.deleteOne({ id: id });
+         const rs = await Pageinfo.deleteOne({ _id: id });
          console.log(rs);
          res.send('1');
       } catch (err) {
          console.error(err);
-         res.send('0');
          next(err);
       }
    });

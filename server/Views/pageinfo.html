@@ -34,7 +34,7 @@
                   <p>{{ani}}</p>
                   {% endfor %}
                   <form action="/delete/{{rs.id}}" method="POST">
-                     <button type="submit" class="btn btn-danger btn-delete">삭제</button>
+                     <button type="submit" class="btn btn-danger btn-delete" data-img="{{rs.img}}" data-id="{{rs.id}}">삭제</button>
                   </form>
                </div>
             </div>
@@ -43,8 +43,7 @@
          <!-- /loop -->
       </div>
    </div>
-   <input type="hidden" name="imgname" value="{{rs.img}}" />
-   <input type="hidden" name="id" value="{{rs.id}}" />
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -54,8 +53,9 @@
          event.preventDefault();
          const id = this.dataset.id;
          const img = this.dataset.img;
+         console.log(id, img);
          if (confirm("정말로 삭제하시겠습니까?")) {
-            axios.post("/pageinfo/del", {
+            axios.post("/pageinfo/delete", {
                id: id,
                img: img
             })

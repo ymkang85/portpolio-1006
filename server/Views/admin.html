@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 모드</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">관리자모드</h1>
+        <p class="text-center">관리자모드 설정화면입니다. </p>
+        <form method="post" id="adminwrite">
+            <fieldset>
+                <legend>관리자 정보 입력</legend>
+                <div class="mb-3">
+                    <label for="userid" class="form-label">
+                        아이디
+                    </label>
+                    <input type="text" id="userid" class="form-control" name="userid" />
+                </div>
+                <div class="mb-3">
+                    <label for="userpass" class="form-label">
+                        비밀번호
+                    </label>
+                    <input type="password" id="userpass" class="form-control" name="userpass" />                    
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary write">
+                        저 장
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+       $(function(){
+          $('.write').click(function(e){
+              e.preventDefault();
+              const regId = /^(?=[^ㄱ-ㅎ가-힇]).{4,9}$/
+              const regPass= /^(?=[^ㄱ-ㅎ가-힇])(?=.*[!@#$%^]).{4,10}$/
+              const userid = $("#userid").val();
+              const userpass = $("#userpass").val();
+              if(userid == "" ) {
+                 alert("아이디는 필수 입니다.");
+                 $("#userid").focus();
+              }else if(regId.test(userid)==false){
+                 alert("아이디는 한글 금지, 4자에서 9자 까지입니다.");
+                 $("#userid").val("");
+                 $("#userid").focus();  
+              }else if(userpass == ""){
+                alert("비밀번호는 필수 입니다.");
+                $("#userpass").focus();
+              }else if(regPass.test(userpass)==false){
+                 alert("비밀번호는 한글 금지, 4자에서 11자 까지이며 특수문자가 포함되야합니다.");
+                 $("#userid").val("");
+                 $("#userid").focus();  
+              }
+              $.ajax({
+                type: "post",
+                url: "/admin/write",
+                dataType: "json",
+                data: { userid: userid, userpass: userpass},
+                success: function(rs){
+                    if(rs == 1){
+                        alert("성공적으로 등록했습니다.");
+                        location.href="/";
+                    }else{
+                        alert("에러가 발생했습니다.");
+                    }
+                },
+                error: function(err){
+                    alert('에러가 발생했습니다. ' +err );
+                }
+              })
+          });
+       }); 
+    </script>
+</body>
+</html>

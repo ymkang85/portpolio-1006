@@ -4,6 +4,7 @@ const nunjucks = require('nunjucks');
 const fs = require('fs');
 const indexRouter = require('./routes');
 const connect = require('./schemas');
+const adminRouter = require('./routes/admin');
 const myinfoRouter = require('./routes/myinfo');
 const pageinfoRouter = require('./routes/pageinfo');
 const skillsRouter = require('./routes/skills');
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 app.use('/myinfo', myinfoRouter);
 app.use('/pageinfo', pageinfoRouter);
 app.use('/skills', skillsRouter);

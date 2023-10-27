@@ -95,7 +95,7 @@ router.route("/edit")
       console.error(err);
       next(err);
     }
-  })
+  });
 
 router.route('/del')
   .post(async (req, res, next) => {

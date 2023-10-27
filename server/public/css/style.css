@@ -94,3 +94,10 @@ a:hover>.card {
 .newimg{
     display: none;
 }
+
+#adminwrite{
+    width: 500px;
+    background: #fff;
+    margin : 40px auto;
+    padding: 50px;
+}
