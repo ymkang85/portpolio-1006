@@ -38,7 +38,7 @@ router.route('/write')
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
-            fs.moveSync('./img/'+req.files[0].filename, './img/pageinfo/'+req.files[0].filename);
+            fs.moveSync('./img/' + req.files[0].filename, './img/pageinfo/' + req.files[0].filename);
             fileupload = {
                orimg: req.files.map(file => file.originalname),
                img: req.files.map(file => file.filename)
@@ -97,9 +97,9 @@ router.route('/edit')
       try {
          let fileupload;
 
-         for (let i = 0; i < req.files.length; i++) {
-            fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);            
-         }
+         // for (let i = 0; i < req.files.length ; i++) {
+         //    fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);
+         // }
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
@@ -124,15 +124,22 @@ router.route('/edit')
       }
    });
 
-router.route('/delete/:id')
+router.route('/del')
    .post(async (req, res, next) => {
       try {
-         const id = req.params.id;         
-         const rs = await Pageinfo.deleteOne({ _id : id });
+         const id = req.body.id;
+         const img = req.body.img;
+         //파일 삭제
+         if (fs.existsSync('./img/pageinfo/' + img)) {
+            fs.removeSync('./img/pageinfo/' + img);
+         }
+         //db 삭제
+         const rs = await Pageinfo.deleteOne({ id: id });
          console.log(rs);
-         res.redirect('/pageinfo/list');
+         res.send('1');
       } catch (err) {
-         console.error("Error deleting page:", err);
+         console.error(err);
+         res.send('0');
          next(err);
       }
    });

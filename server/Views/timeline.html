@@ -14,6 +14,7 @@
 <body class="timeline">
     <div class="container">
         <div class="row">
+            <h1 class="text-center"><strong>{{title}}</strong></h1>
             <div class="d-flex justify-content-between my-5">
                 <a href="/" class="btn btn-primary">목록</a>
                 <a href="./write" class="btn btn-success">데이터입력</a>
@@ -23,19 +24,47 @@
             {% for rs in row %}
             <a href="/timeline/edit/{{rs.id}}" class="col-3 my-4">
                 <div class="card">
-                    <img src="/timeline/{{image}}" class="card-img-top" />
-                    <div class="card-body">
+                    <img src="/timeline/{{rs.img}}" class="card-img-top" />
+                    <div class="card-body ">
                         <h1>{{rs.jobtitle}}</h1>
                         <p>{{rs.where}}</p>
                         <p>{{rs.wdate}}</p>
+                        <a href="./edit/{{rs.id}}" class="btn btn-warning">수정</a>
+                        <a href="#" class="btn btn-danger timeremove" data-img="{{rs.img}}" data-id="{{rs.id}}">삭제</a>
                     </div>
                 </div>
             </a>
             {% endfor %}
             <!-- /loop -->
         </div>
-
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const rmv = document.querySelectorAll(".timeremove");
+        rmv.forEach((el, index) => {
+            el.addEventListener("click", function (event) {
+                event.preventDefault();
+                const id = this.dataset.id;
+                const img = this.dataset.img;
+                if (confirm("정말로 삭제하시겠습니까?")) {
+                    axios.post("/timeline/del", {
+                        id: id,
+                        img: img
+                    })
+                        .then(function (res) {
+                            console.log(res);
+                            if (res.data == 1) {
+                                alert("삭제되었습니다.");
+                                window.location.reload(true);
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        }); //삭제 완료
+                } // endif      
+            });
+        });
+    </script>
 </body>
 
 </html>

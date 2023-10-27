@@ -38,24 +38,38 @@
                   </form>
                </div>
             </div>
-
-
          </a>
          {% endfor %}
          <!-- /loop -->
       </div>
    </div>
+   <input type="hidden" name="imgname" value="{{rs.img}}" />
+   <input type="hidden" name="id" value="{{rs.id}}" />
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-   document.querySelectorAll('.btn-delete').forEach(button => {
-      button.addEventListener('click', (event) => {
+   const rmv = document.querySelectorAll(".btn-delete");
+   rmv.forEach((el, index) => {
+      el.addEventListener("click", function (event) {
          event.preventDefault();
-         if (confirm("정말 삭제하시겠습니까?")) {
-            const form = button.parentElement;
-            if (form && form.tagName === 'FORM') {
-               form.submit();
-            }
-         }
+         const id = this.dataset.id;
+         const img = this.dataset.img;
+         if (confirm("정말로 삭제하시겠습니까?")) {
+            axios.post("/pageinfo/del", {
+               id: id,
+               img: img
+            })
+               .then(function (res) {
+                  console.log(res);
+                  if (res.data == 1) {
+                     alert("삭제되었습니다.");
+                     window.location.reload(true);
+                  }
+               })
+               .catch(function (error) {
+                  console.log(error);
+               }); //삭제 완료
+         } // endif      
       });
    });
 </script>
