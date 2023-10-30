@@ -2,14 +2,18 @@ const express = require("express");
 const path = require('path');
 const nunjucks = require('nunjucks');
 const fs = require('fs');
+const passport = require("passport");
+
 const indexRouter = require('./routes');
 const connect = require('./schemas');
 const adminRouter = require('./routes/admin');
+
 const myinfoRouter = require('./routes/myinfo');
 const pageinfoRouter = require('./routes/pageinfo');
 const skillsRouter = require('./routes/skills');
 const timelineRouter = require('./routes/timeline');
 const portfolioRouter = require('./routes/portfolio');
+
 const app = express();
 
 try {

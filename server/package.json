@@ -18,7 +18,8 @@
     "fs-extra": "^11.1.1",
     "mongoose": "^7.6.1",
     "multer": "^1.4.4",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "passport": "^0.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
