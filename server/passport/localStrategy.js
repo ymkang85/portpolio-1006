@@ -1,8 +1,8 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt"); //암호화
 
-const Admin = require("../schemas/admin");
+const Admin = require("../schemas/admin"); //스키마
 
 module.exports = () => {
     passport.use(new LocalStrategy({
@@ -11,7 +11,7 @@ module.exports = () => {
         passReqToCallback: false
     }, async (userid, userpass, done) => {
         try {
-            const exAdmin = await Admin.findOne({ where: { userid } });
+            const exAdmin = await Admin.findOne({ userid });
             if (exAdmin) {
                 const result = await bcrypt.compare(userpass, exAdmin.userpass);
                 if (result) {

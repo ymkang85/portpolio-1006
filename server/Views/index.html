@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap">
     <link rel="stylesheet" href="/css/style.css" />
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="row">
             <h1 class="text-center">
-                 {{title}}
+                {{title}}
             </h1>
+            {% if user %}
             <div class="col-12">
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -32,9 +36,36 @@
                         <a href="/portfolio/list">내 포트폴리오 정보</a>
                     </li>
                 </ul>
+                <div class="text-center">
+                    <a href="/logout" id="logout" class="btn btnwarning">로그아웃</a>
+                </div>
             </div>
+            {% else %}
+            <form id="login-form">
+                <div class="wrapper fadeInDown">
+                    <div id="formContent">
+                        <p class="text-center mt-5">관리자 전용 페이지 입니다.</p>
+                        <!-- Tabs Titles -->
+                        <!-- Login Form -->
+                        <form class="mt-5">
+                            <input type="text" id="login" class="fadeIn second" name="userid" placeholder="관리자id">
+                            <input type="password" id="password" class="fadeIn third" name="userpass" placeholder="비밀번호">
+                            <input type="submit" class="fadeIn fourth" value="Log In">
+                        </form>
+                    </div>
+                </div>
+            </form>
+            {% endif%}
         </div>
     </div>
-   
+    <script>
+        window.onload=()=>{
+            if(new URL(location.href).searchParams.get("error")){
+                alert(new URL(location.href).searchParams.get("error"))
+            }
+        }
+    </script>
+
 </body>
+
 </html>

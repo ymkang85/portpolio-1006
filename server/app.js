@@ -2,17 +2,19 @@ const express = require("express");
 const path = require('path');
 const nunjucks = require('nunjucks');
 const fs = require('fs');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const passport = require("passport");
+const connect = require('./schemas');
 
 const indexRouter = require('./routes');
-const connect = require('./schemas');
 const adminRouter = require('./routes/admin');
-
 const myinfoRouter = require('./routes/myinfo');
 const pageinfoRouter = require('./routes/pageinfo');
 const skillsRouter = require('./routes/skills');
 const timelineRouter = require('./routes/timeline');
 const portfolioRouter = require('./routes/portfolio');
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 
 const app = express();
 
@@ -36,9 +38,23 @@ app.use(express.static(path.join(__dirname, 'img')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//쿠키, 세션 설정
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        httpOnly : true,
+        secure: false
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', indexRouter);
-app.use('/admin', adminRouter);
-app.use('/myinfo', myinfoRouter);
+app.use('/admin', isLoggedIn, adminRouter);
+app.use('/myinfo', isLoggedIn, myinfoRouter);
 app.use('/pageinfo', pageinfoRouter);
 app.use('/skills', skillsRouter);
 app.use('/timeline', timelineRouter);

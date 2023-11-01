@@ -24,15 +24,15 @@ exports.join = async(req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-   passport.authenticate('local', (authError, admin, info)=>{
+   passport.authenticate('local', (authError, user, info)=>{
       if(authError){
          console.error(authError);
          return next(authError);
       }
-      if(!admin){
+      if(!user){
         return res.redirect(`/?error=${info.message}`);
       }
-      return req.login(admin, (loginError)=>{
+      return req.login(user, (loginError)=>{
         if(loginError){
             console.error(loginError);
             return next(loginError);
