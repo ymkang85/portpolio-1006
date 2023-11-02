@@ -2,11 +2,23 @@ const express = require('express');
 const Pageinfo = require('../schemas/pageinfo');
 const upload = require('../upload');
 const fs = require('fs-extra');
-
+const { isLoggedIn, isNotLoggedIn } = require("../middlewares");
 const router = express.Router();
 
+router.route('/:id')
+.get( async (req, res, next) => {
+   try{
+      const id = req.params.id;
+      const pageinfo = await Pageinfo.findOne({_id: id});
+      res.send(pageinfo);
+   }catch(err){
+      console.log(err);
+      next(err);
+   }
+});
+
 router.route('/list/:pagename')
-   .get(async (req, res, next) => {
+   .get(isLoggedIn, async (req, res, next) => {
       try {
          const pagename = req.params.pagename;
          const pageinfo = await Pageinfo.find({ pagename: pagename });
@@ -18,7 +30,7 @@ router.route('/list/:pagename')
    });
 
 router.route('/list')
-   .get(async (req, res, next) => {
+   .get( async (req, res, next) => {
       try {
          const row = await Pageinfo.find({});
          res.render('pageinfo', { row });
@@ -29,7 +41,7 @@ router.route('/list')
    });
 
 router.route('/write')
-   .get((req, res, next) => {
+   .get(isLoggedIn, (req, res, next) => {
       res.render('pageinfo_write');
    })
    .post(upload.array("img"), async (req, res, next) => {
@@ -63,7 +75,7 @@ router.route('/write')
    });
 
 router.route('/edit/:id')
-   .get(async (req, res, next) => {
+   .get(isLoggedIn, async (req, res, next) => {
       try {
          const id = req.params.id;
          const row = await Pageinfo.find({ _id: id });

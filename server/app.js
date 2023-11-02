@@ -5,9 +5,9 @@ const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require("passport");
-const connect = require('./schemas');
 
 const indexRouter = require('./routes');
+const connect = require('./schemas');
 const adminRouter = require('./routes/admin');
 const myinfoRouter = require('./routes/myinfo');
 const pageinfoRouter = require('./routes/pageinfo');
@@ -15,7 +15,7 @@ const skillsRouter = require('./routes/skills');
 const timelineRouter = require('./routes/timeline');
 const portfolioRouter = require('./routes/portfolio');
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
-
+const passportConfig = require("./passport");
 const app = express();
 
 try {
@@ -32,6 +32,7 @@ nunjucks.configure('views', {
     express: app,
     watch: true
 });
+passportConfig();
 connect();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'img')));
@@ -53,8 +54,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/admin', isLoggedIn, adminRouter);
-app.use('/myinfo', isLoggedIn, myinfoRouter);
+app.use('/admin', isNotLoggedIn, adminRouter);
+app.use('/myinfo',  myinfoRouter);
 app.use('/pageinfo', pageinfoRouter);
 app.use('/skills', skillsRouter);
 app.use('/timeline', timelineRouter);

@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './home.css';
 import Typewriter from 'typewriter-effect';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { meta, introdata } from '../data/portfolio';
 
-
 const Home = () => {
+   const [ dt, setDt ] = useState({
+      _id:"",
+      pagename:"",
+      title:"",
+      content:"",
+      animated:[],
+      orimg:[],
+      img:[],
+      createAt:"",
+      __v:0
+   });
+   useEffect(()=>{
+      const fetchData = async ()=>{
+         const { data } = await axios.get("/pageinfo/653b6833a2fe87f29109c516");
+         setDt(data);
+      }
+      fetchData();
+   }, []);
+   console.log(dt);
   return (
     <HelmetProvider>
        <section id="home" className="home">
@@ -20,14 +39,14 @@ const Home = () => {
                          align-items-center 
                          justify-content-between">
             <div className="col-lg-6 col-12 ps-5">
-               <h2 className="ms-5">{introdata.title}</h2>
+               <h2 className="ms-5">{dt.title}</h2>
                <h1 className="ms-5 mb-5">
                  <Typewriter 
                     options={{
                         strings: [
-                           introdata.animated.first,
-                           introdata.animated.second,
-                           introdata.animated.third 
+                           dt.animated.first,
+                           dt.animated.second,
+                           dt.animated.third 
                         ],
                         autoStart: true,
                         loop: true,
@@ -48,7 +67,7 @@ const Home = () => {
                </div>
             </div>
             <div className="col-lg-6 col-12 text-center">
-               <img src={introdata.img_url} className="myimg" alt="homeImg" />
+               <img src={`http://localhost:3001/pageinfo/${dt.img[0]}`} className="myimg" alt="homeImg" />
             </div>
          </div>
        </section>

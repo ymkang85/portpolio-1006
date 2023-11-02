@@ -49,7 +49,8 @@
                         <!-- Login Form -->
                         <form class="mt-5">
                             <input type="text" id="login" class="fadeIn second" name="userid" placeholder="관리자id">
-                            <input type="password" id="password" class="fadeIn third" name="userpass" placeholder="비밀번호">
+                            <input type="password" id="password" class="fadeIn third" name="userpass"
+                                placeholder="비밀번호">
                             <input type="submit" class="fadeIn fourth" value="Log In">
                         </form>
                     </div>
@@ -59,8 +60,8 @@
         </div>
     </div>
     <script>
-        window.onload=()=>{
-            if(new URL(location.href).searchParams.get("error")){
+        window.onload = () => {
+            if (new URL(location.href).searchParams.get("error")) {
                 alert(new URL(location.href).searchParams.get("error"))
             }
         }
