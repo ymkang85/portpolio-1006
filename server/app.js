@@ -14,6 +14,7 @@ const pageinfoRouter = require('./routes/pageinfo');
 const skillsRouter = require('./routes/skills');
 const timelineRouter = require('./routes/timeline');
 const portfolioRouter = require('./routes/portfolio');
+const clientRouter = require('./routes/client');
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const passportConfig = require("./passport");
 const app = express();
@@ -60,6 +61,7 @@ app.use('/pageinfo', pageinfoRouter);
 app.use('/skills', skillsRouter);
 app.use('/timeline', timelineRouter);
 app.use('/portfolio', portfolioRouter);
+app.use('/client',clientRouter);
 
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터를 찾을 수 없습니다.`);

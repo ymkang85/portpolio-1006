@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import './portfolio.css'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { portfoliodata, imgData } from '../data/portfolio'
-import { Modal } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
+import axios from 'axios';
 
 const Portfolio = () => {
    const [show, setShow] = useState(false);
@@ -13,6 +15,17 @@ const Portfolio = () => {
    const [clickStyle2, setClickStyle2] = useState(false);
    const [clickStyle3, setClickStyle3] = useState(false);
    const [clickStyle4, setClickStyle4] = useState(false);
+   const [ po, setPo ] = useState({
+      _id:"",
+      category:"",
+      title:"",
+      content:"",
+      link: "",
+      orimg: [],
+      img: [],
+      createAt: "",
+      __v: 0
+   });
    const handleClose = () => {
       setShow(false);
    }

@@ -5,32 +5,8 @@ const fs = require('fs-extra');
 const { isLoggedIn, isNotLoggedIn } = require("../middlewares");
 const router = express.Router();
 
-router.route('/:id')
-.get( async (req, res, next) => {
-   try{
-      const id = req.params.id;
-      const pageinfo = await Pageinfo.findOne({_id: id});
-      res.send(pageinfo);
-   }catch(err){
-      console.log(err);
-      next(err);
-   }
-});
-
-router.route('/list/:pagename')
-   .get(isLoggedIn, async (req, res, next) => {
-      try {
-         const pagename = req.params.pagename;
-         const pageinfo = await Pageinfo.find({ pagename: pagename });
-         res.status(201).json(pageinfo);
-      } catch (err) {
-         console.log(err);
-         next(err);
-      }
-   });
-
 router.route('/list')
-   .get( async (req, res, next) => {
+   .get(isLoggedIn, async (req, res, next) => {
       try {
          const row = await Pageinfo.find({});
          res.render('pageinfo', { row });
@@ -47,15 +23,17 @@ router.route('/write')
    .post(upload.array("img"), async (req, res, next) => {
       try {
          let fileupload;
+         //파일 이동
+         for (let i = 0; i < req.files.length; i++) {
+            fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);
+         }
+
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
-            for (let i = 0; i < req.files.length; i++) {
-               fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);
-               fileupload = {
-                  orimg: req.files.map(file => file.originalname),
-                  img: req.files.map(file => file.filename)
-               }
+            fileupload = {
+               orimg: req.files.map(file => file.originalname),
+               img: req.files.map(file => file.filename)
             }
          }
 
@@ -107,13 +85,9 @@ router.route('/edit/:id')
    });
 
 router.route('/edit')
-   .post(async (req, res, next) => {
+   .post(isLoggedIn, async (req, res, next) => {
       try {
          let fileupload;
-
-         // for (let i = 0; i < req.files.length ; i++) {
-         //    fs.moveSync('./img/' + req.files[i].filename, './img/pageinfo/' + req.files[i].filename);
-         // }
          if (!req.files || req.files.length == 0) {
             fileupload = '';
          } else {
